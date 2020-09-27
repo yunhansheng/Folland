@@ -1,0 +1,216 @@
+\documentclass[hidelinks]{article}
+
+\usepackage{xeCJK}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+
+
+\setcounter{section}{-1}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{Def}
+\theoremstyle{plain}
+\newtheorem{theorem}{Thm}[section]
+\newtheorem{proposition}[theorem]{Prop}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+
+
+\begin{document}
+
+\section{Prologue}
+
+\subsection{The Language of Set Theory}
+\begin{defin}~\\
+limit inferior (resp. superior):
+\begin{gather*}
+\liminf E_n:=\bigcup_{n=1}^{\infty}\left(\bigcap_{k=n}^{\infty}E_k\right)=\{x\mid x\not\in E_n \textrm{ for finitely many n}\} \\
+\limsup E_n:=\bigcap_{n=1}^{\infty}\left(\bigcup_{k=n}^{\infty}E_k\right)=\{x\mid x\in E_n \textrm{ for infinitely many n}\}
+\end{gather*}
+Cartesian product:
+\[
+\prod_{\alpha \in A}X_\alpha:=\{f:A\to \bigcup_{\alpha \in A}X_\alpha \mid f(\alpha)\in X_\alpha \textrm{ for every } \alpha \in A\}
+\]
+$\alpha$th projection (coordinate map): $\pi_\alpha:X\to X_\alpha$ by $\pi_\alpha(f)\mapsto f(\alpha)$
+\end{defin}
+
+
+\subsection{Orderings}
+\begin{defin}~\\
+preorder (quasi-order):= 自反+传递 \newline
+partial ordering:= 自反+反对称+传递 \newline
+linear (total) ordering:= partial ordering +完全，or反对称+传递+完全 \newline
+posets $X$ and $Y$ are order isomorphic if 
+$$\exists f: X\leftrightarrow Y \textrm{ s.t. } x_1\leq x_2 \textrm{ iff } f(x_1)\leq f(x_2)$$
+\end{defin}
+
+\begin{theorem}(The Hausdorff Maximal Principle)\label{Thm 0.1}
+任一偏序集中存在一极大链，包含偏序集中任一链
+\end{theorem}
+\begin{theorem}(Zorn's Lemma)\label{Thm 0.2}
+任一偏序集中存在一极大元，若任一链在该集中有上界
+\end{theorem}
+
+\begin{defin}
+well ordering:= linear ordering +任一非空子集存在（唯一的）极小元
+\end{defin}
+
+\begin{theorem}(The WOP)\label{Thm 0.3}
+任一非空集都可以被良序排序
+\end{theorem}
+\begin{theorem}(The Axiom of Choice)\label{Thm 0.4}
+非空集族上Catersian product非空
+\end{theorem}
+
+\begin{remark}
+在ZF中 \autoref{Thm 0.1} 与 \autoref{Thm 0.2}、\autoref{Thm 0.3}、\autoref{Thm 0.4} 等价.
+\end{remark}
+
+\subsection{Cardinality}
+\begin{defin}~\\
+$\mathrm{card}(X)\leq \mathrm{card}(Y)$:= $\exists f: X\hookrightarrow Y$ (injective) \newline
+$\mathrm{card}(X)=\mathrm{card}(Y)$:= $\exists f: X\leftrightarrow Y$ (bijective) \newline
+$\mathrm{card}(X)\geq \mathrm{card}(Y)$:= $\exists f: X\twoheadrightarrow Y$ (surjective)
+\end{defin}
+
+\begin{proposition}~\\
+a. $\mathrm{card}(X)\leq \mathrm{card}(Y)$ iff $\mathrm{card}(Y)\geq \mathrm{card}(X)$ \newline
+b. either $\mathrm{card}(X)\leq \mathrm{card}(Y)$ or $\mathrm{card}(X)\geq \mathrm{card}(Y)$
+\end{proposition}
+\begin{theorem}(The Schröder-Bernstein Theorem)~\\
+若 $\mathrm{card}(X)\leq \mathrm{card}(Y)$ 且 $\mathrm{card}(Y)\leq \mathrm{card}(X)$，则 $\mathrm{card}(X)=\mathrm{card}(Y)$
+\end{theorem}
+
+\begin{defin}~\\
+$X$ is countable/denumerable:= $\mathrm{card}(X)\leq \mathrm{card}(\mathbb{N})$ \newline
+$X$ has the cardinality of the continuum $\mathfrak{c}$:= $\mathrm{card}(X)=\mathrm{card}(\mathbb{R})$
+\end{defin}
+
+\begin{theorem}(Cantor's Theorem)\label{Thm 0.7}
+对任何集合X及其幂集P(X)存在$\mathrm{card}(X)\leq \mathrm{card}(P(X))$
+\end{theorem}
+
+\begin{remark}
+The construction of $\{x\in X\mid x\not\in g(x)\}$ in the proof of \autoref{Thm 0.7} is called Cantor's diagonal argument. From \autoref{Thm 0.7} one immediately deduces that $X$ is uncountable if $\mathrm{card}(X)\geq \mathfrak{c}$, the converse of which, namely the continuum hypothesis, remains an open problem.
+\end{remark} 
+
+\begin{proposition}~\\
+a. $\mathrm{card}(P(\mathbb{N}))=\mathfrak{c}$ \newline
+b. 若 $\mathrm{card}(X)\leq \mathrm{card}(\mathbb{N})$ 且 $\mathrm{card}(Y)\leq \mathrm{card}(\mathbb{N})$，则 $\mathrm{card}(X\times Y)\leq \mathrm{card}(\mathbb{N})$ \newline
+c. 若$\mathrm{card}(X)\leq \mathrm{card}(\mathbb{R})$ 且 $\mathrm{card}(Y)\leq \mathrm{card}(\mathbb{R})$，则 $\mathrm{card}(X\times Y)\leq \mathrm{card}(\mathbb{R})$ \newline
+d. 若 $\mathrm{card}(A)\leq \mathrm{card}(\mathbb{N})$ 且 $\mathrm{card}(X_\alpha)\leq \mathrm{card}(\mathbb{N})$ 对任何 $\alpha \in A$ 成立，则 $\mathrm{card}(\cup_{\alpha \in A}X_\alpha)\leq \mathrm{card}(\mathbb{N})$ \newline
+e. 若 $\mathrm{card}(A)\leq \mathrm{card}(\mathbb{R})$ 且 $\mathrm{card}(X_\alpha)\leq \mathrm{card}(\mathbb{R})$ 对任何 $\alpha \in A$ 成立，则 $\mathrm{card}(\cup_{\alpha \in A}X_\alpha)\leq \mathrm{card}(\mathbb{R})$ \newline
+f. 对无穷集$X$，$\mathrm{card}(X)\leq \mathrm{card}(\mathbb{N})$ 蕴含 $\mathrm{card}(X)=\mathrm{card}(\mathbb{N})$
+\end{proposition}
+
+\begin{remark}
+Immediately, $\mathbb{Z}$ and $\mathbb{Q}$ are countable.
+\end{remark}
+
+\subsection{More about Well Ordered Sets}
+\begin{defin}~\\
+initial segment of $x$: $I_x:=\{y\in X\mid y<x\}$ \newline
+predecessors of $x$: elements of initial segment $I_x$
+\end{defin}
+
+\begin{theorem}(The Principle of Transfinite Induction)~\\
+良序集 X 中，若子集 $A\subset X$ 满足 $I_x\subset A\Rightarrow x\in A$，则 A=X
+\end{theorem}
+
+\begin{remark}
+超限归纳法是数学归纳法从 $\mathbb{N}$ 向任意良序集的推广.
+\end{remark}
+
+\begin{proposition}~\\
+a. 若X良序且$A\subset X$，则$\bigcup_{x\in A}I_x$ 为X的一前段或本身 \newline
+b. X 和 Y良序，则either X与Y序同构，or X与Y的一个前段序同构，or Y与X的一个前段序同构
+\end{proposition}
+
+\begin{defin}~\\
+set of countable ordinals: 不可数良序集$\Omega$，且$I_x$可数for all $x\in \Omega$ \newline
+first uncountable ordinal: $\omega_1:=\sup \Omega$
+\end{defin}
+
+\begin{proposition}~\\
+a. $\Omega$ 存在且对良序集在序同构意义下唯一 \newline
+b. 任一$\Omega$的可数子集有上界 \newline
+c. $\mathbb{N}$ 序同构于$\Omega$的一子集
+\end{proposition}
+
+\subsection{The Extended Real Number System}
+\begin{defin}
+For arbitraty set $X$ and $f:X\to [0,\infty]$
+$$\sum_{x\in X}f(x):=\sup\left\{\sum_{x\in F}f(x)\mid \textrm{finite} F\subset X\right\}$$
+\end{defin}
+
+\begin{remark}
+It's often convenient to assume that, unless otherwise stated, $0\cdot (\pm \infty)=0$
+\end{remark}
+
+\begin{proposition}~\\
+a. 设 $f:X\to [0,\infty]$ 且 $A=\{x\mid f(x)>0\}$，则 $\forall g: \mathbb{N}\leftrightarrow A$
+\begin{displaymath}
+\sum_{x\in X}f(x) = \left\{ \begin{array}{ll}
+\sum\limits_{k=1}^{\infty}f(g(k)) & \textrm{if }\mathrm{card}(A)=\mathrm{card}(\mathbb{N})\\
+\infty & \textrm{if A is uncountable}
+\end{array} \right.
+\end{displaymath}
+b. $\mathbb{R}$ 中任一开集可以写成可数个开区间的无交并
+\end{proposition}
+
+\subsection{Metric Spaces}
+\begin{defin}~\\
+metric:= 正定+对称+三角不等式 \newline
+product metric on $X_1\times X_2$
+$$\rho((x_1, x_2),(y_1, y_2):=max(\rho(x_1,y_1),\rho(x_2,y_2)$$
+given metric spaces $(X_1,\rho_1)$ and $(X_2,\rho_2)$ \newline
+metrics $\rho_1$ and $\rho_2$ on set $X$ are equivalent if
+\[
+\exists C,C'>0 \textrm{ s.t. } C\rho_1\leq \rho_2\leq C'\rho_1
+\]
+$E$ is dense in $X$ if $\overline{E}=X$ \newline
+$E$ is nowhere dense if $(\overline{E})^{\mathrm{o}}=0$ \newline
+$X$ is separable if it has a countable dense subset
+\end{defin}
+
+\begin{remark}
+A consequence of the definition of metric equivalence is that the product metric need to be unique, but up to a equivalence class. In fact, most results concerning metric spaces depend not on the particular metric chosen but only on its equivalence class.
+\end{remark}
+
+\begin{proposition} \label{Prop 0.10}~\\
+a. $x\in \overline{E}$ \textrm{ iff } $\forall r>0 \textrm{ s.t. } B(r,x)\cup E\neq \emptyset$ \textrm{ iff } $\exists \{x_n\}\in E\textrm{ s.t. }\lim_{n\to \infty}x_n=x$ \newline
+b. 映射连续当且仅当其逆映射将开集映射到开集 \newline
+c. 完备度量空间的闭子集完备，任一度量空间的完备子集为闭集
+\end{proposition}
+
+\begin{defin}
+E is totally bounded if $\forall \epsilon >0$ E 能被有限个半径为 $\epsilon$ 的开球覆盖 \newline
+\end{defin}
+
+\begin{proposition} \label{Prop 0.11}
+E 为紧致集 \textrm{iff} E 为列紧集 \textrm{iff} E 完备且完全有界
+\end{proposition}
+
+\begin{remark}
+紧致又称满足the Heine-Borel Property，列紧又称满足the Bolzano-Weierstrass Property.
+\end{remark}
+
+\begin{proposition}(The Heine–Borel theorem)
+$\mathbb{R}^n$ 中紧致集与有界闭集等价
+\end{proposition}
+
+\begin{remark}
+事实上，从定义知完全有界$\Rightarrow$有界，再综合 \autoref{Prop 0.11} 和 \autoref{Prop 0.10} (c) 即得紧致集$\Rightarrow$有界闭集；但逆命题一般不成立. 在 $\mathbb{R}^n$ 中证明两者等价只需论证有界$\Rightarrow$完全有界即可.
+\end{remark}
+
+
+\subsection{Exercises}
+none
+
+\end{document}
