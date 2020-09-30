@@ -27,9 +27,6 @@
 
 
 \begin{document}
-
-
-
 \section{Prologue}
 
 \subsection{The Language of Set Theory}
@@ -196,7 +193,7 @@ c. 完备度量空间的闭子集完备，任一度量空间的完备子集为�
 \end{proposition}
 
 \begin{defin}
-E is totally bounded if $\forall \epsilon >0$ E 能被有限个半径为 $\epsilon$ 的开球覆盖 \newline
+E is totally bounded if $\forall \epsilon >0$ E 能被有限个半径为 $\epsilon$ 的开球覆盖
 \end{defin}
 
 \begin{proposition} \label{Prop 0.11}
@@ -476,8 +473,10 @@ b. (Tietze Extension Theorem in LCH) 将$\autoref{Prop 4.8}$中的“$T4$空间�
 \indent the set of all compactly supported $f\in C(X)$: $C_c(X)$ \newline
 vanishes at infinity: set $\{x\mid |f(x)|\geq \epsilon \}$ is compact for every $\epsilon >0$\newline
 \indent the set of all $f$ that vanishes at infinity: $C_0(X)\supset C_c(X)$\newline
-partition of unity:  \newline
-subordinate:
+partition of unity on $E\subset X$: $\{h_\alpha\}_{\alpha \in A}\subset C(X,[0,1]$ satisfying:\newline
+\indent (i) $\forall x\in X$ exists a neighborhood of $x$ on which $h_\alpha$ vanishes for all but finitely many $\alpha \in A$ \newline
+\indent (ii) $\sum_{\alpha \in A}h_\alpha(x)=1$ for all $x\in E$ \newline
+partition of unity $\{h_\alpha\}$ is subordinate to an open cover $\mathscr{U}$ of E if $\supp{h_\alpha}$ is contained in one set $U\in \mathscr{U}$ of the covering
 \end{defin}
 
 \begin{proposition}\label{Prop 4.17}~\\
@@ -492,8 +491,8 @@ b. 设$\{\infty\}$不是非紧的LCH空间X中的一点，定义$X^*=X\cup \{\in
 \autoref{Prop 4.17} (b)中的紧化方法称one-point (Alexandroff) compactification.
 \end{remark}
 
-\begin{proposition}
-r
+\begin{proposition}~\\
+对LCH空间X中的紧集K和K的开覆盖$\Sigma=\{U_j\}_{1}^{n}$存在一个$E\in C_c(X,[0,1])$，构成K上从属于$\Sigma$的单位分解
 \end{proposition}
 
 \begin{remark}
@@ -521,6 +520,23 @@ $\sigma$-紧的LCH空间X上uniform convergence on compact sets拓扑第一可�
 
 
 \subsection{Two Compactness Theorems}
+\begin{proposition}(Tychonoff's Theorem)
+若每个拓扑空间紧致，则积空间紧致
+\end{proposition}
+
+\begin{defin}~\\
+$\mathscr{F}\subset C(X)$ is equicontinuous at $x\in X$: $\exists$ neighborhood $U$ of $x$ s.t. $|f(y)-f(x)|<\epsilon$ for all $y\in U$ and $\epsilon>0$ \newline
+$\mathscr{F}\subset C(X)$ is pointwise bounded: $\{f(x)\mid f\in \mathscr{F}\}$ is bounded in $\mathbb{C}$ for every $x\in X$
+\end{defin}
+
+\begin{proposition}~\\
+a. (Arzelà–Ascoli Theorem) 对紧致Hausdorff空间X，$\mathscr{F}\subset C(X)$等度连续$+$逐点有界$\Rightarrow$预紧$+$$(Chebyshev\textrm{度量下})$完全有界 \newline
+b. (Arzelà–Ascoli Theorem, 变体) 对$\sigma$-紧的LCH空间X，$C(X)$中函数列等度连续$+$逐点有界$\Rightarrow$ $\exists$一致收敛于某一$f\in C(X)$的子函数列
+\end{proposition}
+
+
+
+\subsection{The Stone-Weierstrass Theorem}
 
 
 
