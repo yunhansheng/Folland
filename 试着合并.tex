@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage[mathscr]{eucal}
 \usepackage{graphicx}
+\usepackage{xcolor}
 
 \setcounter{section}{-1}
 \setcounter{subsection}{-1}
@@ -204,7 +205,7 @@ E 为紧致集 \textrm{iff} E 为列紧集 \textrm{iff} E 完备且完全有界
 紧致又称满足the Heine-Borel Property，列紧又称满足the Bolzano-Weierstrass Property.
 \end{remark}
 
-\begin{proposition}(The Heine–Borel theorem)
+\begin{proposition}\label{Prop 0.15}(The Heine–Borel theorem)
 $\mathbb{R}^n$ 中紧致集与有界闭集等价
 \end{proposition}
 
@@ -416,7 +417,7 @@ Subnet serves like subsequence, but unlike the case of sequence and subsequence,
 
 \subsection{Compact Spaces}
 \begin{defin}~\\
-compact: the Heine-Borel property \newline
+compact: the Heine-Borel property (开覆盖admits有限子开覆盖) \newline
 precompact: the closure is compact \newline
 finite intersection property (FIP): for a family $\{F_\alpha\}_{\alpha \in A}$ of subsets of $X$,
 \[
@@ -426,28 +427,32 @@ holds for all finite $B\subset A$ \newline
 countably compact: every countable open cover has a finite sub-open cover
 \end{defin}
 
-\begin{proposition}(closedness \& compactness)~\\
+\begin{proposition}\label{Prop 4.11}(closedness \& compactness)~\\
 a. compact iff $\bigcap_{\alpha \in A}F_\alpha \neq \emptyset$ holds for every family $\{F_\alpha\}_{\alpha \in A}$ of closed subsets with FIP\newline
-b. 紧致空间的闭子集紧致
+\textcolor{red}{proof outline: De Morgan's Law} \newline
+b. 紧致空间的闭子集紧致 \newline
+\textcolor{red}{proof outline: 考察闭集$F\subset X $的一组开覆盖和$\{F^c\}$的并集，它们构成$X$的一组开覆盖.}
 \end{proposition}
 
-\begin{proposition}($T_2$ \& compactness)~\\
+\begin{proposition}\label{Prop 4.12}(compactness on Hausdorff space)~\\
 a. Hausdorff空间的紧致子集为闭集\newline
-b. 紧致Hausdorff空间是正规的
+\textcolor{red}{proof outline: 先证Hausdorff空间可以“区分”（admits disjoint open sets of）紧集和紧集之外的一点（在紧集中每一点选一个与紧集外那点不相交的闭邻域构成一个紧集的开覆盖）；进而$F^c$是开的.} \newline
+b. 紧致Hausdorff空间是正规的 \newline
+\textcolor{red}{proof outline: same as that of \autoref{Prop 4.12} (a)}
 \end{proposition}
 
 \begin{proposition}(compactness \& continuity)\label{Prop 4.13}
-连续映射保紧致性
+连续映射保紧致性\newline
+\textcolor{red}{proof outline: 连续性定义是保开集的，而紧致性是开集族刻画的，自然连续性也保紧致性.}
 \end{proposition}
 
 \begin{remark}
-\autoref{Prop 4.13}的两个显然推论：\newline
-\indent 从紧致空间到Hausdorff空间之间的连续双射是同胚映射，亦即其逆映射连续 \\
-\indent 对紧致的$X$, $C(X)=BC(X)$
+\autoref{Prop 4.13} 的两个显然推论：(i) 从紧致空间到Hausdorff空间之间的连续双射是同胚映射，亦即其逆映射连续 (ii) by \autoref{Prop 0.15} 对紧致的$X$, $C(X)=BC(X)$
 \end{remark}
 
-\begin{proposition} (Generalization of \autoref{Prop 0.11})~\\
-X is compact iff every net in X has a cluster point (Bolzano-Weierstrass Property)
+\begin{proposition} (\autoref{Prop 0.11} 的推广, Bolzano-Weierstrass property for compact topological space)~\\
+X is compact iff every net in X has a cluster point (convergent subnet) \newline
+\textcolor{red}{proof outline*: 先设$X$紧致，对$X$上网$\langle x_\alpha \rangle_{\alpha in A}$ 考察$E_\alpha=\{x_\beta\mid \beta \succsim \alpha\}$，并由$A$的对有向性推出$E_\alpha$的FIP，于是根据\autoref{Prop 4.11} (a) $\exists x\in \cap_{\alpha \in A}\overline{E}_\alpha$为聚集点.\newline 反之假设$X$非紧且$\{U_\beta\}_{\beta \in B}$为$X$的开覆盖，我们构造一个没有收敛子网的网；先构造$\mathscr{A}$为$B$中所有有限子集的集合并定义$P\precsim Q$当$P\subset Q$，可证$\mathscr{A}$为有向集，故对$A\in \mathscr{A}$选$x_A\in (\cup_{\beta\in A}U_\beta)^c$就构成了$X$上一网；对任何$x\in U_\beta \subset X$都可以验证$x_A$不频繁落入$U_\beta$中，即任何$x$都不是该网的聚集点.}
 \end{proposition}
 
 
@@ -457,10 +462,12 @@ X is compact iff every net in X has a cluster point (Bolzano-Weierstrass Propert
 locally compact: every point has a compact neighborhood
 \end{defin}
 
-\begin{proposition}~\\
+\begin{proposition}\label{Prop 4.15}~\\
 对局部紧Hausdorff空间$(LCH\textrm{空间})$ X成立:\newline
-a. 任意个$x\in X$的开邻域中可以找到一个包含在开邻域内的紧邻域 \newline
-b. 对满足$K\subset U\subset X$的紧集K和开集U存在预紧集V s.t. $K\subset V\subset \overline{V} \subset U$
+a. 任意$x\in X$的开邻域中可以找到一个包含在其内的紧邻域 \newline
+\textcolor{red}{proof outline: 设开邻域U，紧邻域F，则$U\cap F^o$构成预紧开邻域$U'$；按\autoref{Prop 4.12} (a)的证明$U'$中内点$x\in U'$和$\partial U'$admits不相交的开集V和W；按\autoref{Prop 4.11} (b) $\overline{V}$紧致，又$\overline{V}\subset U'$，故$\overline{V}$满足条件.} \newline
+b. 对满足$K\subset U\subset X$的紧集K和开集U存在预紧集V s.t. $K\subset V\subset \overline{V} \subset U$ \newline
+\textcolor{red}{proof outline: 按\autoref{Prop 4.15}对每个$x\in K$选一个紧邻域$N_x\subset U$.}
 \end{proposition}
 
 \begin{proposition}~\\
