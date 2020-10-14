@@ -467,7 +467,7 @@ locally compact: every point has a compact neighborhood
 a. 任意$x\in X$的开邻域中可以找到一个包含在其内的紧邻域 \newline
 \textcolor{red}{proof outline: 设开邻域U，紧邻域F，则$U\cap F^o$构成预紧开邻域$U'$；按\autoref{Prop 4.12} (a)的证明$U'$中内点$x\in U'$和$\partial U'$admits不相交的开集V和W；按\autoref{Prop 4.11} (b) $\overline{V}$紧致，又$\overline{V}\subset U'$，故$\overline{V}$满足条件.} \newline
 b. 对满足$K\subset U\subset X$的紧集K和开集U存在预紧集V s.t. $K\subset V\subset \overline{V} \subset U$ \newline
-\textcolor{red}{proof outline: 按\autoref{Prop 4.15}对每个$x\in K$选一个紧邻域$N_x\subset U$.}
+\textcolor{red}{proof outline: 按\autoref{Prop 4.15} (a)对每个$x\in K$选一个紧邻域$N_x\subset U$.}
 \end{proposition}
 
 \begin{proposition}~\\
@@ -544,6 +544,43 @@ b. (Arzelà–Ascoli Theorem, 变体) 对$\sigma$-紧的LCH空间X，$C(X)$中�
 
 
 \subsection{The Stone-Weierstrass Theorem}
+
+\begin{defin}~\\
+separate points: $\{\mathscr{A}\in C(X)\mid \forall x,y\in X \textrm{ } \exists f\in \mathscr{A} \textrm{ s.t. }f(x)\neq f(y)\}$ \newline
+algebra: real (complex) vector field of $C(X)$ s.t. $f,g\in A\Rightarrow fg\in A$\newline
+lattice: $\{\mathscr{A}\in C(X)\mid f,g\in \mathscr{A} \Rightarrow \min (f,g), \max(f,g) \in \mathscr{A}\}$
+\end{defin}
+
+\begin{proposition}\label{Prop 4.23} (lemmas for \autoref{Prop 4.24}) \newline
+a. $\mathbb{R}^2$的子代数(under coordinatewise addition \& multiplication)为: $\mathbb{R}^2$, $\{(0,0)\}$, 及分别由$(0,1)$, $(1,0)$和$(1,1)$张成的子空间$\mathscr{L}((0,1))$, $\mathscr{L}((1,0))$, $\mathscr{L}((1,1))$ \newline
+\textcolor{red}{proof outline: linear dependency} \newline
+b. $\forall \epsilon>0$ $\exists$ polynomial of $\mathbb{R}$ s.t. $P(0)=0$ and $||x|-P(x)|<\epsilon$ for $x\in [-1,1]$ \newline
+\textcolor{red}{考察$(1-t)^{0.5}$的Maclaurin展开，得到一个级数；再用级数的部分和作为多项式逼近$(1-t)^{0.5}$；最后考虑怎么把$(1-t)^{0.5}$用$x$代替} \newline
+c. 对紧致Hausdorff空间X和$C(X,\mathbb{R})$的闭子代数$\mathscr{A}$, $f\in \mathscr{A}$ $\Rightarrow$ $(|f|\in \mathscr{A})\wedge(\mathscr{A}\textrm{ is a lattice})$ \newline
+\textcolor{red}{proof outline: 把$h=f/||f||_u$当作\autoref{Prop 4.23} (b)中的$x$用多项式逼近；第二个结论用一个常见的技巧: $\max(f,g)=(f+g+|f-g|)/2$} \newline
+d.对紧致Hausdorff空间X, $C(X,\mathbb{R})$的闭lattice $\mathscr{A}$和$f\in C(X,\mathbb{R})$, 若$\forall x,y\in X$ $\exists g_{x,y}\in \mathscr{A}$ s.t. $g_{x,y}(x)=f(x)$且$g_{x,y}(y)=f(y)$则$f\in \mathscr{A}$\newline
+\textcolor{red}{proof outline*: involves a trick of scaling double-indexed inequality——first fix one and manipulate one of them}
+\end{proposition}
+
+\begin{proposition}\label{Prop 4.24} (The Stone-Weierstrass Theorem) \newline
+Let $X$ be a compact Hausdorff space and $\mathscr{B}$ a subalgebra of $C(X,\mathbb{R})$ that separate points, then $\overline{\mathscr{B}}=\{f\in C(X,\mathbb{R})\mid f(x_0)=0\}$ iff $\exists x_0\in X$ s.t. $f(x_0)=0$; otherwise $\overline{\mathscr{B}}=C(X,\mathbb{R})$ \newline
+\textcolor{red}{考察$\mathbb{R}^2$的子代数$A_{xy}=\{(f(x),f(y))\mid f\in \overline{B}\}$}
+\end{proposition}
+
+\begin{remark}
+The Stone-Weierstrass Theorem does not hold for $C(X,\mathbb{C})$: Let
+\end{remark}
+
+\begin{proposition} (The Complex Stone-Weierstrass Theorem) \\
+
+\end{proposition}
+
+\begin{proposition} (The Stone-Weierstrass Theorem on noncompact LCH space)
+
+\end{proposition}
+
+\subsection{Embeddings in Cubes}
+
 
 
 
