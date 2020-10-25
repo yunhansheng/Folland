@@ -40,7 +40,7 @@
    \end{center}
    \tableofcontents
    \bigbreak\bigbreak
-   Disclaimer: These are the lecture notes I complied while watching Professor Claudio Landim's \href{https://www.youtube.com/playlist?list=PLo4jXE-LdDTQq8ZyA8F8reSQHej3F6RFX}{\textbf{Lectures on Measure Theory}} on YouTube, under the channel Instituto Nacional de Matemática Pura e Aplicada. Professor Landim does a wonderful job explaining this beautiful topic. In support of the free-culture movement, please feel free to use and reproduce this note if needed, though I would appreciate if you indicate the source. I used the online \LaTeX\  editor \href{https://www.overleaf.com}{\textbf{Overleaf}} to write this note.
+   Disclaimer: These are the lecture notes I complied while watching Professor Claudio Landim's \href{https://www.youtube.com/playlist?list=PLo4jXE-LdDTQq8ZyA8F8reSQHej3F6RFX}{\textbf{Lectures on Measure Theory}} on YouTube, under the channel Instituto Nacional de Matemática Pura e Aplicada. Professor Landim does a wonderful job explaining this beautiful topic. In support of the free-culture movement, please feel free to use and reproduce this note if needed, though I would appreciate if you indicate the source. I used the online \LaTeX\  editor \href{https://www.overleaf.com}{\textbf{Overleaf} to write this note.} This is my first \LaTeX\ math note.
    \vspace*{\stretch{2.0}}
 \end{titlepage}
 
@@ -156,7 +156,7 @@ If $\exists\ C\in\mathscr{C}:f(C)<+\infty$, then $2\degree$ implies $1\degree$, 
 
 \begin{eg}~
 \begin{enumerate}[label=\arabic*\degree]
-    \item discrete measure: Let $\Omega$ be a set and $\mathscr{C}\subset\mathscr{P}(\Omega)$. Let $\{x_j\}$ and $\{p_j\}$ be two sequences on $\Omega$ and $\mathbb{R}_{0+}$ resp., then the discrete measure $\mu$ on $\mathscr{C}$ by $\mu:A\mapsto\sum_jp_j\{x_j\in A\}$ is $\sigma$-additive
+    \item \textbf{discrete measure}: Let $\Omega$ be a set and $\mathscr{C}\subset\mathscr{P}(\Omega)$. Let $\{x_j\}$ and $\{p_j\}$ be two sequences on $\Omega$ and $\mathbb{R}_{0+}$ resp., then the discrete measure $\mu$ on $\mathscr{C}$ by $\mu:A\mapsto\sum_jp_j\{x_j\in A\}$ is $\sigma$-additive
     \item Let $\Omega=(0,1)$ and $\mathscr{C}=\{(a,b]:0\leq a<b<1\}\subset\mathscr{P}(\Omega)$, then $\mu:\mathscr{C}\to\mathbb{R}_+\cup\{+\infty\}$ defined by
     \[\mu(a,b]=
     \begin{cases} 
@@ -483,7 +483,7 @@ The Lebesgue measure $\mu:\mathscr{L}\to\overline{\mathbb{R}}_+$ is regular.
 \addcontentsline{toc}{section}{\protect\numberline{}\S8. Integration: measurable and simple functions}
 
 \begin{defin}
-Let measure space $(\Omega,\mathscr{F},\mu)$, $\mathscr{B}$ the Borel $\sigma$-álgebra, and \[\overline{\mathscr{B}}=\{A\cup B:A\in\mathscr{B},B\subset\{\pm\infty\}\}\]
+Let measure space $(\Omega,\mathscr{F},\mu)$, $\mathscr{B}$ the Borel $\sigma$-álgebra, and the \textbf{extended Borel $\sigma$-álgebra} \[\overline{\mathscr{B}}=\{A\cup B:A\in\mathscr{B},B\in\mathscr{P}(\{\pm\infty\})\}\]
 then $f:\Omega\to\overline{\mathbb{R}}$ is \textbf{$\mathscr{F}$-measurable} if $\forall A\in\overline{\mathscr{B}}:f^{-1}(A)\in\mathscr{F}$
 \end{defin}
 
@@ -491,6 +491,18 @@ then $f:\Omega\to\overline{\mathbb{R}}$ is \textbf{$\mathscr{F}$-measurable} if 
 $\overline{\mathscr{B}}$ defined above is a $\sigma$-álgebra.
 \end{claim}
 
+\begin{claim}
+Let measure space $(\Omega,\mathscr{F},\mu)$ and function $f:\Omega\to\overline{\mathbb{R}}$, then $f$ is $\mathscr{F}$-measurable iff \[\forall x\in\mathbb{R}:f^{-1}((-\infty,x])\in\mathscr{F}\]
+\end{claim}
+\textcolor{red}{One direction is trivial, for the other, let
+\[\mathscr{C}=\{A\in\overline{\mathscr{B}}:f^{-1}\in\mathscr{F}\}\subset\overline{\mathscr{B}}\]
+We want to show that $\mathscr{C}\supset\overline{\mathscr{B}}$, and we only need to prove that $\mathscr{C}$ is a $\sigma$-álgebra. Since then
+\[\mathscr{C}\supset\mathscr{F}(\{(-\infty,x]:x\in\mathbb{R}\})\supset\overline{\mathscr{B}}\]}
+
+\begin{eg}~\\
+\textbf{simple function}: Let $(\Omega,\mathscr{F},\mu)$ be a measure space, $E_1,E_2,...,E_n\in\mathscr{F}$ a finite \emph{disjoint} partition of $\Omega$, and $c_1,c_2,...,c_n\in\mathbb{R}$ a finite sequence. Then the simple function $f:\Omega\to\mathbb{R}$ by \[f:x\mapsto\sum_{j=1}^nc_j\{x\in E_j\}\]
+is $\mathscr{F}$-measurable.
+\end{eg}
 
 \bigbreak
 
@@ -498,5 +510,10 @@ $\overline{\mathscr{B}}$ defined above is a $\sigma$-álgebra.
 \setcounter{section}{9}
 \addcontentsline{toc}{section}{\protect\numberline{}\S9. Measurable functions}
 
+\bigbreak
+
+\section*{\S10. Definition of the integral}
+\setcounter{section}{10}
+\addcontentsline{toc}{section}{\protect\numberline{}\S10. Definition of the integral}
 
 \end{document}
