@@ -10,6 +10,9 @@
 \usepackage{gensymb}
 \usepackage{marvosym}
 \usepackage{enumitem}
+\usepackage[toc]{multitoc}
+\renewcommand*{\multicolumntoc}{2}
+\setlength{\columnseprule}{1pt}
 
 \setlength\parindent{0pt}
 
@@ -38,14 +41,14 @@
       \centerline{\href{https://en.wikipedia.org/wiki/The_Five_Senses_(series)}{\includegraphics[width=0.6\linewidth]{ee.jpg}}}
       \normalsize{Think allegorically, like people in the Middle Ages!}
       \end{center}
-   \tableofcontents
+  \tableofcontents
    \bigbreak\bigbreak
    Disclaimer: These are the lecture notes I complied while watching Professor Claudio Landim's \href{https://www.youtube.com/playlist?list=PLo4jXE-LdDTQq8ZyA8F8reSQHej3F6RFX}{\textbf{Lectures on Measure Theory}} on YouTube, under the channel Instituto Nacional de Matemática Pura e Aplicada. Professor Landim does a wonderful job explaining this beautiful topic. In support of the free-culture movement, please feel free to use and reproduce this note if needed, though I would appreciate if you indicate the source. I used the online \LaTeX\  editor \href{https://www.overleaf.com}{\textbf{Overleaf} to write this note.} This is my first \LaTeX\ math note.
 \end{titlepage}
 
-\section*{\S0. Introduction: a non-measurable set}
+\section*{\S0. Introduction}
 \setcounter{section}{0}
-\addcontentsline{toc}{section}{\protect\numberline{}\S0. Introduction: a non-measurable set}
+\addcontentsline{toc}{section}{\protect\numberline{}\S0. Introduction}
 
 We want to show that traditional notion of ``length" (``area", ``volume" etc.) are not well defined. \bigbreak
 As our experience tells us, the traditional notion of ``length" on $\mathbb{R}$
@@ -81,9 +84,9 @@ Solution: change the domain of $\sigma$ from $\mathscr{P}(\mathbb{R})$ to a smal
 
 \bigbreak
 
-\section*{\S1. Classes of subsets (semi-álgebras, álgebras and $\sigma$-álgebras)}
+\section*{\S1. Classes of subsets}
 \setcounter{section}{1}
-\addcontentsline{toc}{section}{\protect\numberline{}\S1. Classes of subsets (semi-álgebras, álgebras and $\sigma$-álgebras)}
+\addcontentsline{toc}{section}{\protect\numberline{}\S1. Classes of subsets}
 
 \begin{defin}
 \textbf{semi-álgebra} of set $\Omega$: $\mathscr{S}\subset\mathscr{P}(\Omega)$ s.t.
@@ -155,7 +158,7 @@ If $\exists\ C\in\mathscr{C}:f(C)<+\infty$, then $2\degree$ implies $1\degree$, 
 
 \begin{eg}~
 \begin{enumerate}[label=\arabic*\degree]
-    \item \textbf{discrete measure}: Let $\Omega$ be a set and $\mathscr{C}\subset\mathscr{P}(\Omega)$. Let $\{x_j\}$ and $\{p_j\}$ be two sequences on $\Omega$ and $\mathbb{R}_{0+}$ resp., then the discrete measure $\mu$ on $\mathscr{C}$ by $\mu:A\mapsto\sum_jp_j\{x_j\in A\}$ is $\sigma$-additive
+    \item \textbf{discrete measure}: Let $\Omega$ be a set and $\mathscr{C}\subset\mathscr{P}(\Omega)$. Let $\{x_j\}$ and $\{p_j\}$ be two sequences on $\Omega$ and $\mathbb{R}_{0+}$ resp., then the discrete measure $\mu$ on $\mathscr{C}$ by $\mu:A\mapsto\sum_jp_j1_{\{x_j\in A\}}$ is $\sigma$-additive
     \item Let $\Omega=(0,1)$ and $\mathscr{C}=\{(a,b]:0\leq a<b<1\}\subset\mathscr{P}(\Omega)$, then $\mu:\mathscr{C}\to\mathbb{R}_+\cup\{+\infty\}$ defined by
     \[\mu(a,b]=
     \begin{cases} 
@@ -491,9 +494,9 @@ For the other part, by what we proved already $\exists\textrm{ open set }H:\mu(H
 
 \bigbreak
 
-\section*{\S8. Integration: measurable and simple functions}
+\section*{\S8. Measurable functions}
 \setcounter{section}{8}
-\addcontentsline{toc}{section}{\protect\numberline{}\S8. Integration: measurable and simple functions}
+\addcontentsline{toc}{section}{\protect\numberline{}\S8. Measurable functions}
 
 \begin{defin}
 Let measure space $(\Omega,\mathscr{F},\mu)$, $\mathscr{B}$ the Borel $\sigma$-álgebra, and the \textbf{extended Borel $\sigma$-álgebra} \[\overline{\mathscr{B}}=\{A\cup B:A\in\mathscr{B},B\in\mathscr{P}(\{\pm\infty\})\}\]
@@ -513,7 +516,7 @@ We want to show that $\mathscr{C}\supset\overline{\mathscr{B}}$, and we only nee
 \[\mathscr{C}\supset\mathscr{F}(\{(-\infty,x]:x\in\mathbb{R}\})\supset\overline{\mathscr{B}}\]}
 
 \begin{eg}~\\
-\textbf{simple function}: Let $(\Omega,\mathscr{F},\mu)$ be a measure space, $E_1,E_2,...,E_n\in\mathscr{F}$ a finite \emph{disjoint} partition of $\Omega$, and $c_1,c_2,...,c_n\in\mathbb{R}$ a finite sequence. Then the simple function $f:\Omega\to\mathbb{R}$ by \[f:x\mapsto\sum_{j=1}^nc_j\{x\in E_j\}\]
+\textbf{simple function}: Let $(\Omega,\mathscr{F},\mu)$ be a measure space, $E_1,E_2,...,E_n\in\mathscr{F}$ a finite \emph{disjoint} partition of $\Omega$, and $c_1,c_2,...,c_n\in\mathbb{R}$ a finite sequence. Then the simple function $f:\Omega\to\mathbb{R}$ by \[f:x\mapsto\sum_{j=1}^nc_j1_{\{x\in E_j\}}\]
 is $\mathscr{F}$-measurable.
 \end{eg}
 
@@ -526,17 +529,17 @@ Let $f$ be a positive simple function (meaning that $c_j$ defined above is non-n
 Integral of simple functions can already solve problems that Riemann integral is unable to solve. Consider the Dirichlet function on $(0,1]$, which is not Riemann-integrable, yet by the definition above the integral of this simple function does exist.
 \end{remark}
 
-\bigbreak
-
-\section*{\S9. Measurable functions}
-\setcounter{section}{9}
-\addcontentsline{toc}{section}{\protect\numberline{}\S9. Measurable functions}
+\begin{claim}\label{CLM 8.16}
+For simple functions $f=\sum\limits_{j=1}^mc_j1_{\{x\in E_j\}},g=\sum\limits_{k=1}^nd_j1_{\{x\in F_j\}}$
+\[f\leq g\Rightarrow I(f)\leq I(g)\]
+\end{claim}
+\textcolor{red}{In the case of $\exists j,k:E_j\cap E_k\neq\emptyset$, $f\leq g$ forces $c_j\leq d_k$; in the other case $I(f)=I(g)=0$}
 
 \begin{claim}
 Let $(\Omega,\mathscr{F},\mu)$ is a measure space, and $g,f:\Omega\to\overline{\mathbb{R}}$ be $\mathscr{F}$-measurable functions, then those functions are also $\mathscr{F}$-measurable: $\forall\alpha>0$
 \[\alpha+f,\alpha f+g,fg,1/f,f^+,|f|\]
 \end{claim}
-\textcolor{red}{Take well use of \hyperref[CLM 8.15]{CLM 8.15}; tricky equalities:
+\textcolor{red}{Take good use of \hyperref[CLM 8.15]{CLM 8.15}; tricky equalities:
 \[f^+=\max\{f,0\},f^-=\max\{-f,0\},|f|=f^++f^-\]
 \[\{\omega\in\Omega:f(\omega)+g(\omega)<x\}=\bigcup_{r\in\mathbb{Q}}(\{\omega:f(\omega)<r\}\cup\{\omega:g(\omega)<x-r\})\in\mathscr{F}\]}
 
@@ -574,26 +577,63 @@ Let $(\Omega,\mathscr{F},\mu)$ be a measure space, $f:\Omega\to\mathbb{R}$ be $\
 
 \bigbreak
 
-\section*{\S10. Definition of the integral}
+\section*{\S9. Definition of the integral}
+\setcounter{section}{9}
+\addcontentsline{toc}{section}{\protect\numberline{}\S9. Definition of the integral}
+
+\begin{claim}
+Let $f\geq0$ be $\mathscr{F}$-measurable, then $\exists$ monotonically increasing sequence of simple non-negative functions $\{f_n\}$ s.t. pointwise $\lim\limits_nf_n=f$
+\end{claim}
+\textcolor{red}{(Stepwise approximation) construct $f_n$:
+\[f_n(x)=\sum_{k=0}^{n2^n-1}\frac{k}{2^n}1_{\{\frac{k}{2^n}\leq f(x)<\frac{k+1}{2^n}\}}+n1_{\{f(x)\geq n\}}=\begin{cases}
+n & f(x)\geq n\\
+\frac{k}{2^n} & \frac{k}{2^n}\leq f(x)<\frac{k+1}{2^n}
+\end{cases}\]
+for $k\in[0,n2^n-1]\cap\mathbb{N}$\newline
+Since
+\[\{\frac{k}{2^n}\leq f(x)<\frac{k+1}{2^n}\}=f^{-1}([\frac{k}{2^n},\frac{k+1}{2^n})),\{f(x)\geq n\}=f^{-1}([n,\infty))\in\mathscr{F}\]
+$f_n$ is indeed simple and non-negative. Then think geometrically how $\lim_nf_n$ approximates $f$. Lastly show $f_n\leq f_{n+1}$ by discussing $f_n(x)\geq n+1$,$n\leq f_n(x)<n+1$,$f(x)<n$ three cases.}
+
+\begin{claim}\label{CLM 9.22}
+Let $\{f_n\}$ be a sequence of non-negative, monotonically increasing simple functions, and $g\leq\lim\limits_nf_n$ a non-negative simple function, then
+\[I(g)\leq\lim\limits_nI(f_n)\]
+\end{claim}
+\textcolor{red}{em}
+
+\begin{proposition}
+Let $\{f_n\},\{g_n\}$ be sequences of non-negative, monotonically increasing simple functions that pointwise converges to $f$, then
+\[\lim_nI(f_n)=\lim_nI(g_n)\]
+\end{proposition}
+\textcolor{red}{Follows from \hyperref[CLM 9.22]{CLM 9.22}}
+
+\bigbreak
+
+\section*{\S10. Integral of simple functions}
 \setcounter{section}{10}
-\addcontentsline{toc}{section}{\protect\numberline{}\S10. Definition of the integral}
+\addcontentsline{toc}{section}{\protect\numberline{}\S10. Integral of simple functions}
 
 \bigbreak
 
-\section*{\S11. Integral of simple functions}
+\section*{\S11. Properties of the integral}
 \setcounter{section}{11}
-\addcontentsline{toc}{section}{\protect\numberline{}\S11. Integral of simple functions}
+\addcontentsline{toc}{section}{\protect\numberline{}\S11. Properties of the integral}
 
 \bigbreak
 
-\section*{\S12. Properties of the integral}
+\section*{\S12. Convergence of integrals}
 \setcounter{section}{12}
-\addcontentsline{toc}{section}{\protect\numberline{}\S12. Properties of the integral}
+\addcontentsline{toc}{section}{\protect\numberline{}\S12. Convergence of integrals}
 
 \bigbreak
 
-\section*{\S13. Theorems on the convergence of integrals}
+\section*{\S13. Product measures}
 \setcounter{section}{13}
-\addcontentsline{toc}{section}{\protect\numberline{}\S13. Theorems on the convergence of integrals}
+\addcontentsline{toc}{section}{\protect\numberline{}\S13. Product measures}
+
+\bigbreak
+
+\section*{\S14. Fubini's theorem}
+\setcounter{section}{14}
+\addcontentsline{toc}{section}{\protect\numberline{}\S14. Fubini's theorem}
 
 \end{document}
