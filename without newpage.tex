@@ -32,16 +32,15 @@
 \begin{document}
 
 \begin{titlepage}
-   \vspace*{\stretch{0.1}}
    \begin{center}
       \LARGE\textbf{Measure and Integration: An Introduction}\medbreak
       \Large\textsl{A. Scrjabin}\bigbreak
-      \href{https://en.wikipedia.org/wiki/The_Five_Senses_(series)}{\includegraphics[scale=0.20]{1.eps}}
-   \end{center}
+      \centerline{\href{https://en.wikipedia.org/wiki/The_Five_Senses_(series)}{\includegraphics[width=0.6\linewidth]{ee.jpg}}}
+      \normalsize{Think allegorically, like people in the Middle Ages!}
+      \end{center}
    \tableofcontents
    \bigbreak\bigbreak
    Disclaimer: These are the lecture notes I complied while watching Professor Claudio Landim's \href{https://www.youtube.com/playlist?list=PLo4jXE-LdDTQq8ZyA8F8reSQHej3F6RFX}{\textbf{Lectures on Measure Theory}} on YouTube, under the channel Instituto Nacional de Matemática Pura e Aplicada. Professor Landim does a wonderful job explaining this beautiful topic. In support of the free-culture movement, please feel free to use and reproduce this note if needed, though I would appreciate if you indicate the source. I used the online \LaTeX\  editor \href{https://www.overleaf.com}{\textbf{Overleaf} to write this note.} This is my first \LaTeX\ math note.
-   \vspace*{\stretch{2.0}}
 \end{titlepage}
 
 \section*{\S0. Introduction: a non-measurable set}
@@ -364,7 +363,7 @@ By \hyperref[Prop 2.3]{Prop 2.3} $\mu$ extends uniquely to additive $\nu:\mathsc
 $\mu$ defined above is $\sigma$-additive, i.e.
 \[\forall A_j,A=\coprod_{j\geq1}A_j\in\mathscr{S}:\mu(A)=\sum_{j\geq1}\mu(A_j)\]
 \end{proposition}
-\textcolor{red}{Consider the extension $\nu$, then trivially $\nu(A)\geq\sum_{j\geq1}\mu(A_j)$; the other direction can be provedin 2 steps:
+\textcolor{red}{Consider the extension $\nu$, then trivially $\nu(A)\geq\sum_{j\geq1}\mu(A_j)$; the other direction can be proved 2 steps:
 \begin{enumerate}[label=\arabic*\degree]
     \item Let $A=(a,b]$ and $A_j=(a_j,b_j]$, then $\forall\epsilon>0$
     \[[a+\epsilon,b]\subset(a,b]=\coprod_{j\geq1}(a_j,b_j]\subset\bigcup_{j\geq1}(a_j,b_j+\frac{\epsilon}{2^j})\]
@@ -432,6 +431,10 @@ and on one hand,
 On the other,
 \[\pi^*(E\cap A^c)\leq\pi^*(E)\]}
 
+\begin{remark}
+In particular, the Lebesgue measure is complete.
+\end{remark}
+
 \bigbreak
 
 \section*{\S7. Approximation theorems}
@@ -474,7 +477,17 @@ Let $\mu$ be the Lebesgue measure, then the collection of all $\mu$-measurable s
 \begin{proposition}
 The Lebesgue measure $\mu:\mathscr{L}\to\overline{\mathbb{R}}_+$ is regular.
 \end{proposition}
-\textcolor{red}{efef}
+\textcolor{red}{Let $A\in\mathscr{L}$ and $E_n=[-n,n]$, then $\mu(A_n)=\mu(A\cap E_n)<\infty$. Hence \begin{equation}\label{eq:1}
+\forall\epsilon>0\ \exists\{B_{n,k}\}_{k\geq1}\in\mathscr{A}\textrm{ a cover of }A_n:\mu(A_n)\leq\sum_{k\geq1}\mu(B_{n,k})\leq\mu(A_n)+\epsilon\end{equation}
+Construct open sets $G_{n,k}$: by \hyperref[Prop 1.1]{Prop 1.1}
+\[B_{n,k}\in\mathscr{A}\Rightarrow\exists\delta_{n,k,j}>0:B_{n,k}=\coprod_{j=1}^{l_{n,k}}(a_{n,k,j},b_{n,k,j}]\subset\bigcup_{j=1}^{l_{n,k}}(a_{n,k,j},b_{n,k,j}+\delta_{n,k,j})=G_{n,k}\]
+Choose $\delta_{n,k,j}$ s.t. \begin{equation}\label{eq:2}
+\sum_{j=1}^{l_{m,k}}<\frac{\epsilon}{2^n2^k}\Rightarrow\mu(B_{n,k})\leq\mu(G_{n,k})\leq\mu(B_{n,k})+\frac{\epsilon}{2^n2^k}\end{equation}
+Since $A_n\subset\bigcup_{k\geq1}B_{n,k}\subset\bigcup_{k\geq1}G_{n,k}=G_n$, by equations \ref{eq:1} and \ref{eq:2}
+\[\mu(G_n)\leq\sum_{k\geq1}\mu(G_{n,k})\leq\sum_{k\geq1}\mu(B_{n,k})+\frac{\epsilon}{2^n}\leq\mu(A_n)+\frac{\epsilon}{2^{n-1}}\]
+Let open set $G=\bigcup_{n\geq1}G_n$, then $A\subset G$, and
+\[\mu(G\setminus A)=\mu(\bigcup_{n\geq1}G_n\setminus \bigcup_{n\geq1}A_n)=\mu(\bigcup_{n\geq1}(G_n\setminus A_n))\leq\bigcup_{n\geq1}\mu(G_n\setminus A_n)\leq\sum_{n\geq1}\frac{\epsilon}{2^{n-1}}=2\epsilon\]
+For the other part, by what we proved already $\exists\textrm{ open set }H:\mu(H\setminus A^c)\leq\epsilon$, then one can easily check that slosed set $F=H^c\subset A$ and $\mu(A\setminus F)\leq\epsilon$.}
 
 \bigbreak
 
@@ -491,7 +504,7 @@ then $f:\Omega\to\overline{\mathbb{R}}$ is \textbf{$\mathscr{F}$-measurable} if 
 $\overline{\mathscr{B}}$ defined above is a $\sigma$-álgebra.
 \end{claim}
 
-\begin{claim}
+\begin{claim}\label{CLM 8.15}
 Let measure space $(\Omega,\mathscr{F},\mu)$ and function $f:\Omega\to\overline{\mathbb{R}}$, then $f$ is $\mathscr{F}$-measurable iff \[\forall x\in\mathbb{R}:f^{-1}((-\infty,x])\in\mathscr{F}\]
 \end{claim}
 \textcolor{red}{One direction is trivial, for the other, let
@@ -504,16 +517,83 @@ We want to show that $\mathscr{C}\supset\overline{\mathscr{B}}$, and we only nee
 is $\mathscr{F}$-measurable.
 \end{eg}
 
+\begin{defin}
+Let $f$ be a positive simple function (meaning that $c_j$ defined above is non-negative), then the \textbf{integral of simple function} $f$:
+\[I(f)=\sum_{j=1}^nc_j\mu(E_j)\]
+\end{defin}
+
+\begin{remark}
+Integral of simple functions can already solve problems that Riemann integral is unable to solve. Consider the Dirichlet function on $(0,1]$, which is not Riemann-integrable, yet by the definition above the integral of this simple function does exist.
+\end{remark}
+
 \bigbreak
 
 \section*{\S9. Measurable functions}
 \setcounter{section}{9}
 \addcontentsline{toc}{section}{\protect\numberline{}\S9. Measurable functions}
 
+\begin{claim}
+Let $(\Omega,\mathscr{F},\mu)$ is a measure space, and $g,f:\Omega\to\overline{\mathbb{R}}$ be $\mathscr{F}$-measurable functions, then those functions are also $\mathscr{F}$-measurable: $\forall\alpha>0$
+\[\alpha+f,\alpha f+g,fg,1/f,f^+,|f|\]
+\end{claim}
+\textcolor{red}{Take well use of \hyperref[CLM 8.15]{CLM 8.15}; tricky equalities:
+\[f^+=\max\{f,0\},f^-=\max\{-f,0\},|f|=f^++f^-\]
+\[\{\omega\in\Omega:f(\omega)+g(\omega)<x\}=\bigcup_{r\in\mathbb{Q}}(\{\omega:f(\omega)<r\}\cup\{\omega:g(\omega)<x-r\})\in\mathscr{F}\]}
+
+\begin{claim}
+Let $(\Omega,\mathscr{F},\mu)$ be a measure space, and $\{f_n:\Omega\to\overline{\mathbb{R}}\}_{n\geq1}$ a sequence of $\mathscr{F}$-measurable functions, then these functions are also $\mathscr{F}$-measurable:
+\[\sup_nf_n,\inf_nf_n,\lim\sup_nf_n,\lim\inf_nf_n,\lim f_n\]
+Note that these operators are taken pointwise.
+\end{claim}
+\textcolor{red}{Since $\forall\omega\in\Omega\ \forall x\in\overline{\mathbb{R}}:f_n(\omega)>x\Rightarrow\sup_nf_n(\omega)>x$
+\[\forall\omega\in\Omega\ \forall x\in\overline{\mathbb{R}}:\{\sup_nf_n(\omega)>x\}=\bigcup_{n\geq1}\{f_n(\omega)>x\}\]
+Also note that $\inf\limits_nf_n=-\sup\limits_n\{-f_n\}$, and $\lim\sup\limits_nf_n=\inf\limits_k\sup\limits_{n\geq k}f_n$}
+
+\begin{claim}
+Construct measure space $(\Omega,\mathscr{F},\mu)$ where $\Omega$ is a topological space and $\mathscr{F}\supset\mathscr{B}$, let $f:\Omega\to\overline{\mathbb{R}}$, then
+\begin{center}$f$ is continuous $\Rightarrow$ $f$ is $\mathscr{F}$-measurable\end{center}
+\end{claim}
+
+\begin{defin}
+Let $(\Omega,\mathscr{F},\mu)$ be a measure space, and $\mathbb{P}$ a property of $f:\Omega\to\overline{\mathbb{R}}$, then $\mathbb{P}$ holds \textbf{almost surely} if $\mathbb{P}$ holds on $E$ for $E\in\mathscr{F}$ and $\mu(E^c)=0$
+\end{defin}
+
+\begin{proposition}
+Let $(\mathbb{R},\mathscr{L},\lambda$ be a measure space ($\lambda$ is the Lebesgue measure), and $f,g:\mathbb{R}\to\overline{\mathbb{R}}$. Let $f$ be $\mathscr{L}$-measurable, then $g=f$ almost surely $\Rightarrow$ $g$ is $\mathscr{L}$-measurable.
+\end{proposition}
+\textcolor{red}{Let $g=f$ almost surely holds on $E\in\mathscr{L}$, then
+\[\forall A\in\overline{\mathscr{B}}:\{\omega\in\Omega:g(\omega)\in A\}=(\{\omega\in\Omega:f(\omega)\in A\}\cap E)cup(\{\omega\in\Omega:g(\omega)\in A\}\cap E^c)\in\mathscr{L}\]}
+
+\begin{remark}
+The same statement does \emph{not} hold for the Borel $\sigma$-álgebra.
+\end{remark}
+
+\begin{claim}
+Let $(\Omega,\mathscr{F},\mu)$ be a measure space, $f:\Omega\to\mathbb{R}$ be $\mathscr{F}$-measurable, and $g:\mathbb{R}\to\mathbb{R}$ be $\overline{\mathscr{B}}$-measurable, then $g\circ f:\Omega\to\mathbb{R}$ is $\mathscr{F}$-measurable.
+\end{claim}
+
 \bigbreak
 
 \section*{\S10. Definition of the integral}
 \setcounter{section}{10}
 \addcontentsline{toc}{section}{\protect\numberline{}\S10. Definition of the integral}
+
+\bigbreak
+
+\section*{\S11. Integral of simple functions}
+\setcounter{section}{11}
+\addcontentsline{toc}{section}{\protect\numberline{}\S11. Integral of simple functions}
+
+\bigbreak
+
+\section*{\S12. Properties of the integral}
+\setcounter{section}{12}
+\addcontentsline{toc}{section}{\protect\numberline{}\S12. Properties of the integral}
+
+\bigbreak
+
+\section*{\S13. Theorems on the convergence of integrals}
+\setcounter{section}{13}
+\addcontentsline{toc}{section}{\protect\numberline{}\S13. Theorems on the convergence of integrals}
 
 \end{document}
