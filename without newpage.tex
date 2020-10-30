@@ -581,7 +581,7 @@ Let $(\Omega,\mathscr{F},\mu)$ be a measure space, $f:\Omega\to\mathbb{R}$ be $\
 \setcounter{section}{9}
 \addcontentsline{toc}{section}{\protect\numberline{}\S9. Definition of the integral}
 
-\begin{claim}
+\begin{claim}\label{CLM 9.21}
 Let $f\geq0$ be $\mathscr{F}$-measurable, then $\exists$ monotonically increasing sequence of simple non-negative functions $\{f_n\}$ s.t. pointwise $\lim\limits_nf_n=f$
 \end{claim}
 \textcolor{red}{(Stepwise approximation) construct $f_n$:
@@ -598,7 +598,16 @@ $f_n$ is indeed simple and non-negative. Then think geometrically how $\lim_nf_n
 Let $\{f_n\}$ be a sequence of non-negative, monotonically increasing simple functions, and $g\leq\lim\limits_nf_n$ a non-negative simple function, then
 \[I(g)\leq\lim\limits_nI(f_n)\]
 \end{claim}
-\textcolor{red}{em}
+\textcolor{red}{The proof follows in two steps:\begin{enumerate}[label=\arabic*\degree]
+    \item Let $g=c1_E$ for $E\in\mathscr{F}$ and $c\geq0$. Since $c=0\Rightarrow I(g)=0\leq\lim\limits_nI(f_n)$, WLOG $c>0$.\newline
+    Construct $A_n=\{x\in E:f_n(x)\geq c-\epsilon\}$, then $A_n\subset A_{n+1}$ and $\bigcup\limits_{n\geq1}A_n=E$. We have
+    \[(c-\epsilon)\mu(A_n)=I((c-\epsilon)1_{A_n})\leq I(f_n1_{A_n})\leq I(f_n)\]
+    Take limits on both sides, and since $\mu$ is continuous at $E$ from below
+    \[I(g)-\epsilon\mu(E)=(c-\epsilon)\lim_n\mu(A_n)\leq\lim_nI(f_n)\]
+    Hence $I(g)\leq\lim\limits_nI(f_n)$ follows from the arbitrariness of $\epsilon>0$.
+    \item Let $g=\sum\limits_{k=1}^nc_k1_{E_k}$ for $c_k\geq0$ and $E_k\in\mathcal{F}$ forms a partition of $\Omega$. Then
+    \[I(g)=\sum_{k=1}^nI(c_k1_{E_k})\leq\sum_{k=1}^n\lim_nI(f_n1_{E_k})=\lim_nI(\sum_{k=1}^nf_n1_{E_k})=\lim_nI(f_n)\]
+\end{enumerate}}
 
 \begin{proposition}
 Let $\{f_n\},\{g_n\}$ be sequences of non-negative, monotonically increasing simple functions that pointwise converges to $f$, then
@@ -606,34 +615,48 @@ Let $\{f_n\},\{g_n\}$ be sequences of non-negative, monotonically increasing sim
 \end{proposition}
 \textcolor{red}{Follows from \hyperref[CLM 9.22]{CLM 9.22}}
 
+\begin{defin}
+The \textbf{integral} of a $\mathscr{F}$-measurable \emph{non-negative} function $f$: \[I(f)=\lim I(f_n)\]
+for $\{f_n\}$ a monotonically increasing sequence of non-negative simple functions that (pointwise) converges to $f$.\newline
+A $\mathscr{F}$-measurable function $f$ is \textbf{integrable} if both $I(f^+),I(f^-)<\infty$, and the \textbf{integral} of it is
+\[I(f)=I(f^+)-I(f^-)\]
+\end{defin}
+
 \bigbreak
 
-\section*{\S10. Integral of simple functions}
+\section*{\S10. Properties of the integral}
 \setcounter{section}{10}
-\addcontentsline{toc}{section}{\protect\numberline{}\S10. Integral of simple functions}
+\addcontentsline{toc}{section}{\protect\numberline{}\S10. Properties of the integral}
+
+\begin{claim}
+Let $f,g$ be non-negative $\mathscr{F}$-measurable functions, then
+\[\forall k\geq0:I(kf+g)=kI(f)+I(g)\]
+\end{claim}
+\textcolor{red}{Prove first for $f,g$ are simple functions, then the general statement follows by approximation.\newline
+If $f=\sum\limits_jc_j1_{E_j},g=\sum\limits_kd_k1_{f_k}$ for $c_j,d_k\geq0$ and $E_j,F_k\in\mathscr{F}$ partitions of $\Omega$, then
+\[E_j=\sum_kE_j\cap F_k\Rightarrow1_{E_j}=\sum_k1_{E_j\cap F_k}\Rightarrow f=\sum_{j,k}c_j1_{E_j\cap F_k}\]
+Similarly, $g=\sum\limits_{j,k}d_k1_{E_j\cap F_k}$}
+
+\begin{claim}
+Let $f$ be a $\mathscr{F}$-measurable function and $A\in\mathscr{F}$, then $f$ is integrable $\Rightarrow$ $1_Af$ is integrable.
+\end{claim}
 
 \bigbreak
 
-\section*{\S11. Properties of the integral}
+\section*{\S11. Convergence of integrals}
 \setcounter{section}{11}
-\addcontentsline{toc}{section}{\protect\numberline{}\S11. Properties of the integral}
+\addcontentsline{toc}{section}{\protect\numberline{}\S11. Convergence of integrals}
 
 \bigbreak
 
-\section*{\S12. Convergence of integrals}
+\section*{\S12. Product measures}
 \setcounter{section}{12}
-\addcontentsline{toc}{section}{\protect\numberline{}\S12. Convergence of integrals}
+\addcontentsline{toc}{section}{\protect\numberline{}\S12. Product measures}
 
 \bigbreak
 
-\section*{\S13. Product measures}
+\section*{\S13. Fubini's theorem}
 \setcounter{section}{13}
-\addcontentsline{toc}{section}{\protect\numberline{}\S13. Product measures}
-
-\bigbreak
-
-\section*{\S14. Fubini's theorem}
-\setcounter{section}{14}
-\addcontentsline{toc}{section}{\protect\numberline{}\S14. Fubini's theorem}
+\addcontentsline{toc}{section}{\protect\numberline{}\S13. Fubini's theorem}
 
 \end{document}
