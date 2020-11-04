@@ -628,7 +628,7 @@ A $\mathscr{F}$-measurable function $f$ is \textbf{integrable} if both $I(f^+),I
 \setcounter{section}{10}
 \addcontentsline{toc}{section}{\protect\numberline{}\S10. Properties of the integral}
 
-\begin{claim}
+\begin{claim}\label{CLM 10.23}
 Let $f,g$ be non-negative $\mathscr{F}$-measurable functions, then
 \[\forall k\geq0:I(kf+g)=kI(f)+I(g)\]
 \end{claim}
@@ -637,8 +637,61 @@ If $f=\sum\limits_jc_j1_{E_j},g=\sum\limits_kd_k1_{f_k}$ for $c_j,d_k\geq0$ and 
 \[E_j=\sum_kE_j\cap F_k\Rightarrow1_{E_j}=\sum_k1_{E_j\cap F_k}\Rightarrow f=\sum_{j,k}c_j1_{E_j\cap F_k}\]
 Similarly, $g=\sum\limits_{j,k}d_k1_{E_j\cap F_k}$}
 
+\begin{remark}
+The monotonicity $g\leq f\Rightarrow I(g)\leq I(f)$ would then be a corollary of \hyperref[CLM 10.23]{CLM 10.23}
+\end{remark}
+
+\begin{proposition}
+Let $(\Omega,\mathscr{F},\mu)$ be the measure space, $\mathscr{F}$-measurable functions $f,g$ be integrable, disjoint sets $A,B\in\mathscr{F}$, and $c\in\mathbb{R}$, then
+\begin{enumerate}[label=\arabic*\degree]
+    \item $cf+g$ is integrable
+    \item $1_Af$ is integrable
+    \item $I(1_{A\cup B}f)=I(1_Af)+I(1_Bf)$
+\end{enumerate}
+\end{proposition}
+
+\begin{remark}
+Denote $I(f)=\int f\,d\mu$ and $I(1_Af)=\int_A f\,d\mu$.
+\end{remark}
+
 \begin{claim}
-Let $f$ be a $\mathscr{F}$-measurable function and $A\in\mathscr{F}$, then $f$ is integrable $\Rightarrow$ $1_Af$ is integrable.
+Let $f\geq0$ be integrable and $E:\mu(E)=0$, then $\int_Ef\,d\mu=0$
+\end{claim}
+\textcolor{red}{Approximation by simple functions $g_n=g_n1_E$}
+
+\begin{claim}\label{CLM 10.25}
+If $f$ is integrable, then $|f|<\infty$ almost surely.
+\end{claim}
+\textcolor{red}{Firstly note that $|f|=f^++f^-$ is integrable. Then
+\[n\mu(\{|f|\geq n\})=\int n1_{\{|f|\geq n\}}\,d\mu\leq\int_{\{|f|\geq n\}}|f|\,d\mu\leq\int|f|\,d\mu\]
+Let $\{|f|\geq n\}=A_n$ and notice that $A_n$ is decreasing to $\bigcap\limits_{n\geq1}A_n=\{|f|=\infty\}$, from the continuity
+\[0\leq\mu(\{|f|=\infty\})=\lim_n\mu(\{|f|\geq n\})\leq\lim_n\frac{1}{n}\int|f|\,d\mu=0\]
+Take $E^c=\{|f|=\infty\}$ completes the proof.}
+
+\begin{claim}
+The following basic properties holds
+\begin{enumerate}[label=\arabic*\degree]
+    \item\[\int(f+g)\,d\mu=\int f\,d\mu+\int f\,d\mu\]
+    \item\[|\int f\,d\mu|\leq\int|f|\,d\mu\]
+    \item$\forall c\in\mathbb{R}:cf$ is integrable, and
+    \[\int cf\,d\mu=c\int f\,d\mu\]
+    \item\[g\leq f\Rightarrow\int g\,d\mu\leq\int f\,d\mu\]
+    \item\[f=g\textrm{ almost surely }\Rightarrow\int f\,d\mu=\int g\,d\mu\]
+\end{enumerate}
+\end{claim}
+\textcolor{red}{In general since we have proved those properties for non-negative functions, those can be proved by partitioning $f$ to non-negative functions $f^+$ and $f^-$.}
+
+\begin{claim}
+If $f\geq0$ and $\int f\,d\mu=0$, then $f=0$ almost surely.
+\end{claim}
+\textcolor{red}{Similar to the proof of \hyperref[CLM 10.25]{CLM 10.25}, consider $E_n=\{x\in\Omega:f(x)\geq\frac{1}{n}\}$ of which the measure is $0$. By subadditivity the measure of $E=\bigcup_{n\geq1}E_n=\{x\in\Omega:f(x)>0\}$ is also $0$.}
+
+\begin{claim}
+Let $h:\Omega\to\overline{\mathbb{R}}$ be $\mathscr{F}$-measurable and $|h|\leq f$, then $f\textrm{ is integrable }\Rightarrow h\textrm{ is integrable}$
+\end{claim}
+
+\begin{claim}
+Let $f$ be $\mathscr{F}$-measurable and $E\in\Omega$ with finite measure. If $|f|\leq c$ for some $c\in\mathbb{R}$ on $E$ and $|f|=0$ on $E^c$, then $f$  is integrable.
 \end{claim}
 
 \bigbreak
@@ -658,5 +711,19 @@ Let $f$ be a $\mathscr{F}$-measurable function and $A\in\mathscr{F}$, then $f$ i
 \section*{\S13. Fubini's theorem}
 \setcounter{section}{13}
 \addcontentsline{toc}{section}{\protect\numberline{}\S13. Fubini's theorem}
+
+\bigbreak
+
+\section*{\S14. Hahn-Jordan Theorem}
+\setcounter{section}{14}
+\addcontentsline{toc}{section}{\protect\numberline{}\S14. Hahn-Jordan Theorem}
+
+\bigbreak
+
+\section*{\S15. Radon-Nikodym Theorem}
+\setcounter{section}{15}
+\addcontentsline{toc}{section}{\protect\numberline{}\S15. Radon-Nikodym Theorem}
+
+\bigbreak
 
 \end{document}
