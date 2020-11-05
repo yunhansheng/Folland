@@ -745,9 +745,24 @@ For measures $\mu,\nu$ on $(\Omega,\mathscr{F})$, $\mu$ is \textbf{absolute cont
 \begin{eg}~
 \begin{enumerate}[label=\arabic*\degree]
     \item $\mu_f$ defined in \hyperref[CLM 11.30]{CLM 11.30} is absolute continuous w.r.t $\mu$
-    \item
+    \item Let $\lambda$ be the Lebesgue measure, and let $\mu_f(A)=\int_Af\,d\lambda$, and
+    \[\forall x\in\mathbb{R}\ \forall B\in\Omega:\delta_x(B)=\begin{cases}
+      1 & x\in B\\
+      0 & \textrm{otherwise}
+    \end{cases}\]
+    then $\mu_f\not\ll\delta_x$ and $\delta_x\not\ll\mu_f$
 \end{enumerate}
 \end{eg}
+
+\begin{claim}
+Let $(\Omega,\mathscr{F},\mu)$ be measure space, $f$ be non-negative and $\mathscr{F}$-measurable, and $\mu_f$ the measure defined by $\mu_f(A)=\int_Af\,d\mu$, then a collection $\mathscr{C}$ of integrable functions is \textbf{uniformly integrable}, i.e.
+\[\forall f\in\mathscr{C}\ \forall B\in\Omega\ \forall\epsilon>0\ \exists\delta>0:\mu(B)<\delta\Rightarrow\mu_f(B)<\epsilon\]
+\end{claim}
+\textcolor{red}{Use
+\begin{align*}
+\int_Af\,d\mu&=\int_A1_{\{f\geq n\}}f\,d\mu+\int_A1_{\{f<n\}}f\,d\mu\\&\leq\Big(\int_Af\,d\mu-\int_A1_{\{f<n\}}f\,d\mu\bigg)+n\mu(A)
+\end{align*}
+and scale $n$.}
 
 \bigbreak
 
