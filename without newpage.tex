@@ -41,12 +41,12 @@
    \begin{center}
       \LARGE\textbf{Measure and Integration: An Introduction}\medbreak
       \Large\textsl{A. Scrjabin}\bigbreak
-      \centerline{\href{https://en.wikipedia.org/wiki/The_Five_Senses_(series)}{\includegraphics[width=0.6\linewidth]{ee.jpg}}}
+      \centerline{\href{https://en.wikipedia.org/wiki/The_Five_Senses_(series)}{\includegraphics[width=0.7\linewidth]{ee.jpg}}}
       \normalsize{Think allegorically, like people in the Middle Ages!}
       \end{center}
   \tableofcontents
    \bigbreak\bigbreak
-   Disclaimer: These are the lecture notes I complied while watching Professor Claudio Landim's \href{https://www.youtube.com/playlist?list=PLo4jXE-LdDTQq8ZyA8F8reSQHej3F6RFX}{\textbf{Lectures on Measure Theory}} on YouTube, under the channel Instituto Nacional de Matemática Pura e Aplicada. Professor Landim does a wonderful job explaining this beautiful topic. In support of the free-culture movement, please feel free to use and reproduce this note if needed, though I would appreciate if you indicate the source. I used the online \LaTeX\  editor \href{https://www.overleaf.com}{\textbf{Overleaf} to write this note.} This is my first \LaTeX\ math note.
+   Disclaimer: These are the lecture notes I complied while watching Professor Claudio Landim's \href{https://www.youtube.com/playlist?list=PLo4jXE-LdDTQq8ZyA8F8reSQHej3F6RFX}{\textbf{Lectures on Measure Theory}} on YouTube, under the channel Instituto Nacional de Matemática Pura e Aplicada. Professor Landim does a wonderful job explaining this beautiful topic. In support of the free-culture movement, please feel free to use and reproduce this note if needed, though I would appreciate if you acknowledge the source. I used the online \LaTeX\  editor \href{https://www.overleaf.com}{\textbf{Overleaf} to write this note.} This is my first \LaTeX\ math note.
 \end{titlepage}
 
 \section*{\S0. Introduction}
@@ -548,12 +548,12 @@ Let $(\Omega,\mathscr{F},\mu)$ is a measure space, and $g,f:\Omega\to\overline{\
 
 \begin{claim}
 Let $(\Omega,\mathscr{F},\mu)$ be a measure space, and $\{f_n:\Omega\to\overline{\mathbb{R}}\}_{n\geq1}$ a sequence of $\mathscr{F}$-measurable functions, then these functions are also $\mathscr{F}$-measurable:
-\[\sup_nf_n,\inf_nf_n,\lim\sup_nf_n,\lim\inf_nf_n,\lim f_n\]
+\[\sup_nf_n,\inf_nf_n,\limsup_nf_n,\liminf_nf_n,\lim f_n\]
 Note that these operators are taken pointwise.
 \end{claim}
 \textcolor{red}{Since $\forall\omega\in\Omega\ \forall x\in\overline{\mathbb{R}}:f_n(\omega)>x\Rightarrow\sup_nf_n(\omega)>x$
 \[\forall\omega\in\Omega\ \forall x\in\overline{\mathbb{R}}:\{\sup_nf_n(\omega)>x\}=\bigcup_{n\geq1}\{f_n(\omega)>x\}\]
-Also note that $\inf\limits_nf_n=-\sup\limits_n\{-f_n\}$, and $\lim\sup\limits_nf_n=\inf\limits_k\sup\limits_{n\geq k}f_n$}
+Also note that $\inf\limits_nf_n=-\sup\limits_n\{-f_n\}$, and $\limsup\limits_nf_n=\inf\limits_k\sup\limits_{n\geq k}f_n$}
 
 \begin{claim}
 Construct measure space $(\Omega,\mathscr{F},\mu)$ where $\Omega$ is a topological space and $\mathscr{F}\supset\mathscr{B}$, let $f:\Omega\to\overline{\mathbb{R}}$, then
@@ -727,7 +727,7 @@ g_{31} & g_{32} & \textcolor{red}{g_{33}} & \dots & f_3\\
 \textcolor{red}{Then it's easy to see that $\{g_k\}$ is \emph{simple} and increases to $f$, and $g_k\leq f_k$. Hence by definition
 \[\int f\,d\mu=\lim_k\int g_k\,d\mu\]
 From here prove
-\[\lim\sup_k\int f_k\,d\mu\leq\int f\,d\mu\leq\lim\inf_k\int f_k\,d\mu\]
+\[\limsup_k\int f_k\,d\mu\leq\int f\,d\mu\leq\liminf_k\int f_k\,d\mu\]
 Notice we have to use limit inferior/superior since we don't know if $\int f_k\,d\mu$ is monotonic or not.}
 
 \begin{claim}\label{CLM 11.30}
@@ -755,7 +755,7 @@ For measures $\mu,\nu$ on $(\Omega,\mathscr{F})$, $\mu$ is \textbf{absolute cont
 \end{eg}
 
 \begin{claim}
-Let $(\Omega,\mathscr{F},\mu)$ be measure space, $f$ be non-negative and $\mathscr{F}$-measurable, and $\mu_f$ the measure defined by $\mu_f(A)=\int_Af\,d\mu$, then a collection $\mathscr{C}$ of integrable functions is \textbf{uniformly integrable}, i.e.
+Let $(\Omega,\mathscr{F},\mu)$ be measure space, $f$ be non-negative and integrable, and $\mu_f$ the measure defined by $\mu_f(A)=\int_Af\,d\mu$, then a collection $\mathscr{C}$ of $f$ is \textbf{uniformly integrable}, i.e.
 \[\forall f\in\mathscr{C}\ \forall B\in\Omega\ \forall\epsilon>0\ \exists\delta>0:\mu(B)<\delta\Rightarrow\mu_f(B)<\epsilon\]
 \end{claim}
 \textcolor{red}{Use
@@ -763,6 +763,10 @@ Let $(\Omega,\mathscr{F},\mu)$ be measure space, $f$ be non-negative and $\maths
 \int_Af\,d\mu&=\int_A1_{\{f\geq n\}}f\,d\mu+\int_A1_{\{f<n\}}f\,d\mu\\&\leq\Big(\int_Af\,d\mu-\int_A1_{\{f<n\}}f\,d\mu\bigg)+n\mu(A)
 \end{align*}
 and scale $n$.}
+
+\begin{proposition}(Fatou's Lemma) Let $\{f_n\}_{n\geq1}$ be a sequence of non-negative integrable functions, then
+\[\int\liminf_nf_n\,d\mu\leq\liminf_n\int f_n\,d\mu\]
+\end{proposition}
 
 \bigbreak
 
