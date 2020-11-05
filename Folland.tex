@@ -1,0 +1,611 @@
+\documentclass[hidelinks]{article}
+
+\usepackage{xeCJK}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\setcounter{section}{-1}
+\setcounter{subsection}{-1}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{Def}
+\theoremstyle{plain}
+\newtheorem{theorem}{Thm}[section]
+\newtheorem{proposition}[theorem]{Prop}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+\DeclareMathOperator\supp{supp}
+
+
+
+\begin{document}
+\section{Prologue}
+
+\subsection{The Language of Set Theory}
+\begin{defin}~\\
+limit inferior (resp. superior):
+\begin{gather*}
+\liminf E_n:=\bigcup_{n=1}^{\infty}\left(\bigcap_{k=n}^{\infty}E_k\right)=\{x\mid x\not\in E_n \textrm{ for finitely many n}\} \\
+\limsup E_n:=\bigcap_{n=1}^{\infty}\left(\bigcup_{k=n}^{\infty}E_k\right)=\{x\mid x\in E_n \textrm{ for infinitely many n}\}
+\end{gather*}
+Cartesian product:
+\[
+\prod_{\alpha \in A}X_\alpha:=\{f:A\to \bigcup_{\alpha \in A}X_\alpha \mid f(\alpha)\in X_\alpha \textrm{ for every } \alpha \in A\}
+\]
+$\alpha$th projection (coordinate map): $\pi_\alpha:X\to X_\alpha$ by $\pi_\alpha(f)\mapsto f(\alpha)$
+\end{defin}
+
+
+\subsection{Orderings}
+\begin{defin}~\\
+preorder (quasi-order):= 自反+传递 \newline
+partial ordering:= 自反+反对称+传递 \newline
+linear (total) ordering:= partial ordering +完全，or反对称+传递+完全 \newline
+posets $X$ and $Y$ are order isomorphic if 
+$$\exists f: X\leftrightarrow Y \textrm{ s.t. } x_1\leq x_2 \textrm{ iff } f(x_1)\leq f(x_2)$$
+\end{defin}
+
+\begin{theorem}(The Hausdorff Maximal Principle)\label{Thm 0.1}
+任一偏序集中存在一极大链，包含偏序集中任一链
+\end{theorem}
+\begin{theorem}(Zorn's Lemma)\label{Thm 0.2}
+任一偏序集中存在一极大元，若任一链在该集中有上界
+\end{theorem}
+
+\begin{defin}
+well ordering:= linear ordering +任一非空子集存在（唯一的）极小元
+\end{defin}
+
+\begin{theorem}(The WOP)\label{Thm 0.3}
+任一非空集都可以被良序排序
+\end{theorem}
+\begin{theorem}(The Axiom of Choice)\label{Thm 0.4}
+非空集族上Catersian product非空
+\end{theorem}
+
+\begin{remark}
+在ZF中 \autoref{Thm 0.1} 与 \autoref{Thm 0.2}、\autoref{Thm 0.3}、\autoref{Thm 0.4} 等价.
+\end{remark}
+
+\subsection{Cardinality}
+\begin{defin}~\\
+$\mathrm{card}(X)\leq \mathrm{card}(Y)$:= $\exists f: X\hookrightarrow Y$ (injective) \newline
+$\mathrm{card}(X)=\mathrm{card}(Y)$:= $\exists f: X\leftrightarrow Y$ (bijective) \newline
+$\mathrm{card}(X)\geq \mathrm{card}(Y)$:= $\exists f: X\twoheadrightarrow Y$ (surjective)
+\end{defin}
+
+\begin{proposition}~\\
+a. $\mathrm{card}(X)\leq \mathrm{card}(Y)$ iff $\mathrm{card}(Y)\geq \mathrm{card}(X)$ \newline
+b. either $\mathrm{card}(X)\leq \mathrm{card}(Y)$ or $\mathrm{card}(X)\geq \mathrm{card}(Y)$
+\end{proposition}
+\begin{theorem}(The Schröder-Bernstein Theorem)~\\
+若 $\mathrm{card}(X)\leq \mathrm{card}(Y)$ 且 $\mathrm{card}(Y)\leq \mathrm{card}(X)$，则 $\mathrm{card}(X)=\mathrm{card}(Y)$
+\end{theorem}
+
+\begin{defin}~\\
+$X$ is countable/denumerable:= $\mathrm{card}(X)\leq \mathrm{card}(\mathbb{N})$ \newline
+$X$ has the cardinality of the continuum $\mathfrak{c}$:= $\mathrm{card}(X)=\mathrm{card}(\mathbb{R})$
+\end{defin}
+
+\begin{theorem}(Cantor's Theorem)\label{Thm 0.7}
+对任何集合X及其幂集P(X)存在$\mathrm{card}(X)\leq \mathrm{card}(P(X))$
+\end{theorem}
+
+\begin{remark}
+The construction of $\{x\in X\mid x\not\in g(x)\}$ in the proof of \autoref{Thm 0.7} is called Cantor's diagonal argument. From \autoref{Thm 0.7} one immediately deduces that $X$ is uncountable if $\mathrm{card}(X)\geq \mathfrak{c}$, the converse of which, namely the continuum hypothesis, remains an open problem.
+\end{remark} 
+
+\begin{proposition}~\\
+a. $\mathrm{card}(P(\mathbb{N}))=\mathfrak{c}$ \newline
+b. 若 $\mathrm{card}(X)\leq \mathrm{card}(\mathbb{N})$ 且 $\mathrm{card}(Y)\leq \mathrm{card}(\mathbb{N})$，则 $\mathrm{card}(X\times Y)\leq \mathrm{card}(\mathbb{N})$ \newline
+c. 若$\mathrm{card}(X)\leq \mathrm{card}(\mathbb{R})$ 且 $\mathrm{card}(Y)\leq \mathrm{card}(\mathbb{R})$，则 $\mathrm{card}(X\times Y)\leq \mathrm{card}(\mathbb{R})$ \newline
+d. 若 $\mathrm{card}(A)\leq \mathrm{card}(\mathbb{N})$ 且 $\mathrm{card}(X_\alpha)\leq \mathrm{card}(\mathbb{N})$ 对任何 $\alpha \in A$ 成立，则 $\mathrm{card}(\cup_{\alpha \in A}X_\alpha)\leq \mathrm{card}(\mathbb{N})$ \newline
+e. 若 $\mathrm{card}(A)\leq \mathrm{card}(\mathbb{R})$ 且 $\mathrm{card}(X_\alpha)\leq \mathrm{card}(\mathbb{R})$ 对任何 $\alpha \in A$ 成立，则 $\mathrm{card}(\cup_{\alpha \in A}X_\alpha)\leq \mathrm{card}(\mathbb{R})$ \newline
+f. 对无穷集$X$，$\mathrm{card}(X)\leq \mathrm{card}(\mathbb{N})$ 蕴含 $\mathrm{card}(X)=\mathrm{card}(\mathbb{N})$
+\end{proposition}
+
+\begin{remark}
+Immediately, $\mathbb{Z}$ and $\mathbb{Q}$ are countable.
+\end{remark}
+
+\subsection{More about Well Ordered Sets}
+\begin{defin}~\\
+initial segment of $x$: $I_x:=\{y\in X\mid y<x\}$ \newline
+predecessors of $x$: elements of initial segment $I_x$
+\end{defin}
+
+\begin{theorem}(The Principle of Transfinite Induction)~\\
+良序集 X 中，若子集 $A\subset X$ 满足 $I_x\subset A\Rightarrow x\in A$，则 A=X
+\end{theorem}
+
+\begin{remark}
+超限归纳法是数学归纳法从 $\mathbb{N}$ 向任意良序集的推广.
+\end{remark}
+
+\begin{proposition}~\\
+a. 若X良序且$A\subset X$，则$\bigcup_{x\in A}I_x$ 为X的一前段或本身 \newline
+b. X 和 Y良序，则either X与Y序同构，or X与Y的一个前段序同构，or Y与X的一个前段序同构
+\end{proposition}
+
+\begin{defin}~\\
+set of countable ordinals: 不可数良序集$\Omega$，且$I_x$可数for all $x\in \Omega$ \newline
+first uncountable ordinal: $\omega_1:=\sup \Omega$
+\end{defin}
+
+\begin{proposition}~\\
+a. $\Omega$ 存在且对良序集在序同构意义下唯一 \newline
+b. 任一$\Omega$的可数子集有上界 \newline
+c. $\mathbb{N}$ 序同构于$\Omega$的一子集
+\end{proposition}
+
+\subsection{The Extended Real Number System}
+\begin{defin}
+For arbitraty set $X$ and $f:X\to [0,\infty]$
+$$\sum_{x\in X}f(x):=\sup\left\{\sum_{x\in F}f(x)\mid \textrm{finite} F\subset X\right\}$$
+\end{defin}
+
+\begin{remark}
+It's often convenient to assume that, unless otherwise stated, $0\cdot (\pm \infty)=0$
+\end{remark}
+
+\begin{proposition}~\\
+a. 设 $f:X\to [0,\infty]$ 且 $A=\{x\mid f(x)>0\}$，则 $\forall g: \mathbb{N}\leftrightarrow A$
+\begin{displaymath}
+\sum_{x\in X}f(x) = \left\{ \begin{array}{ll}
+\sum\limits_{k=1}^{\infty}f(g(k)) & \textrm{if }\mathrm{card}(A)=\mathrm{card}(\mathbb{N})\\
+\infty & \textrm{if A is uncountable}
+\end{array} \right.
+\end{displaymath}
+b. $\mathbb{R}$ 中任一开集可以写成可数个开区间的无交并
+\end{proposition}
+
+\subsection{Metric Spaces}
+\begin{defin}~\\
+metric:= 正定+对称+三角不等式 \newline
+product metric on $X_1\times X_2$
+$$\rho((x_1, x_2),(y_1, y_2):=max(\rho(x_1,y_1),\rho(x_2,y_2)$$
+given metric spaces $(X_1,\rho_1)$ and $(X_2,\rho_2)$ \newline
+metrics $\rho_1$ and $\rho_2$ on set $X$ are equivalent if
+\[
+\exists C,C'>0 \textrm{ s.t. } C\rho_1\leq \rho_2\leq C'\rho_1
+\]
+$E$ is dense in $X$ if $\overline{E}=X$ \newline
+$E$ is nowhere dense if $(\overline{E})^{\mathrm{o}}=0$ \newline
+$X$ is separable if it has a countable dense subset
+\end{defin}
+
+\begin{remark}
+A consequence of the definition of metric equivalence is that the product metric need to be unique, but up to a equivalence class. In fact, most results concerning metric spaces depend not on the particular metric chosen but only on its equivalence class.
+\end{remark}
+
+\begin{proposition} \label{Prop 0.10}~\\
+a. $x\in \overline{E}$ \textrm{ iff } $\forall r>0 \textrm{ s.t. } B(r,x)\cup E\neq \emptyset$ \textrm{ iff } $\exists \{x_n\}\in E\textrm{ s.t. }\lim_{n\to \infty}x_n=x$ \newline
+b. 映射连续当且仅当其逆映射将开集映射到开集 \newline
+c. 完备度量空间的闭子集完备，任一度量空间的完备子集为闭集
+\end{proposition}
+
+\begin{defin}
+E is totally bounded if $\forall \epsilon >0$ E 能被有限个半径为 $\epsilon$ 的开球覆盖
+\end{defin}
+
+\begin{proposition} \label{Prop 0.11}
+E 为紧致集 \textrm{iff} E 为列紧集 \textrm{iff} E 完备且完全有界
+\end{proposition}
+
+\begin{remark}
+紧致又称满足the Heine-Borel Property，列紧又称满足the Bolzano-Weierstrass Property.
+\end{remark}
+
+\begin{proposition}\label{Prop 0.15}(The Heine–Borel theorem)
+$\mathbb{R}^n$ 中紧致集与有界闭集等价
+\end{proposition}
+
+\begin{remark}
+事实上，从定义知完全有界$\Rightarrow$有界，再综合 \autoref{Prop 0.11} 和 \autoref{Prop 0.10} (c) 即得紧致集$\Rightarrow$有界闭集；但逆命题一般不成立. 在 $\mathbb{R}^n$ 中证明两者等价只需论证有界$\Rightarrow$完全有界即可.
+\end{remark}
+
+
+\subsection{Exercises}
+none
+
+\newpage
+
+
+
+\section{Measures}
+\newpage
+\section{Integration}
+\newpage
+\section{Signed Measure and Differentiation}
+\newpage
+
+
+
+
+\section{Point Set Topology}
+
+\subsection{Topological Spaces}
+\begin{defin}~\\
+topology on $X$: $P(X)$的子集，包含$\varnothing$和$X$，且在任意并、有限交运算下封闭 \newline
+\indent discrete topology: $P(X)$ \newline
+\indent trivial (indiscrete) topology: $\{\varnothing,X\}$ \newline
+\indent cofinite topology: $\{U\subset X\mid U=\varnothing \textrm{ or } U^c \textrm{ is finite}\}$ \newline
+relative topology on $Y\subset X$ induced by topology $\mathscr{T}$ on $X$:
+$$\mathscr{T}_Y:=\{U\cap Y\mid U\in \mathscr{T}\}$$
+open set: members of $\mathscr{T}$ \newline
+relative open: members of the induced topology \newline
+interior $A^o$: union of all open sets contained in A\newline
+clousre $\overline{A}$: intersection of all closed set containing A\newline
+neighborhood of $x\in X$ ($E\subset X$): $A\subset X$ s.t. $x\in A^o$ ($E\subset A^o$) \newline
+accumulation point $x$ of $A$: $A\cap (U\setminus\{x\})\neq \varnothing$ for every neighborhood $U$ of $x$
+\end{defin}
+
+\begin{remark}
+The concept of closed set, interior, closure, boundary, (nowhere) dense, separable and convergence are consistent with that in the context of metric spaces (metric topology).
+\end{remark}
+
+\begin{proposition}
+$\overline{A}=A\cup acc(A)$， and that A为闭集 \textrm{iff} $acc(A)\subset A$
+\end{proposition}
+
+\begin{defin}~\\
+若$\mathscr{T}_1\subset\mathscr{T}_2$，则$\mathscr{T}_1$ is weaker (coarser) than $\mathscr{T}_2$, or $\mathscr{T}_2$ is stronger (finer) than $\mathscr{T}_1$ \newline
+topology generated by $\mathscr{E}\subset P(X)$:
+$$\mathscr{T}(\mathscr{E}):= \textrm{intersection of all topologies on X containing }\mathscr{E}$$
+$\mathscr{E}$ is a subbase for $\mathscr{T}(\mathscr{E})$ \newline
+neighborhood base for $\mathscr{T}$ on $X$ at $x\in X$: $\mathscr{N}\subset \mathscr{T}$ s.t.
+$$(x\in X \textrm{ for all } V\in \mathscr{N})\wedge(\exists V\in \mathscr{N} \textrm{ s.t. }(x\in V \textrm{ and } V\subset U)\textrm{ for }(U\in \mathscr{T} \textrm{ and } x\in U))$$
+$\mathscr{B}:=\{\mathscr{N}_x\in \mathscr{T}\mid x\in X\}$ is the base for $\mathscr{T}$
+\end{defin}
+
+\begin{remark}
+Trivial topology is the weakest topology on $X$, and discrete topology the strongest. $\mathscr{T}(\mathscr{E})$ is the weakest topology on $X$ that contains $\mathscr{E}$.
+\end{remark}
+
+\begin{proposition}\label{Prop 4.2}~\\
+a. 设拓扑空间$(X,\mathscr{T})$，则$\mathscr{E}\subset \mathscr{T}$为$\mathscr{T}$的基 \textrm{iff} 任一$\mathscr{T}$中开集是$\mathscr{E}$中元素之并 \newline
+b. $\mathscr{E}\subset P(X)$为X上一拓扑的基 \textrm{iff} 
+\[
+(x\in V\textrm{ and }V\in \mathscr{E}\textrm{ for all } x\in X)\wedge(\exists W\in \mathscr{E}\textrm{ s.t. }x\in W\subset (U\cap V)\textrm{ for all }x\in U\cap V\textrm{ and }U,V\in \mathscr{E})
+\]
+c. 若$\mathscr{E}\subset P(X)$，设所有$\mathscr{E}$中元素有限交的并为S，则$\mathscr{T}(\mathscr{E})=\{\emptyset,X,S\}$
+\end{proposition}
+
+\begin{defin}~\\
+first countable：$X$中的每一点都有$\mathscr{T}$的可数邻域基 \newline
+second countable：$\mathscr{T}$有可数基
+\end{defin}
+
+\begin{proposition}\label{Prop 4.3}~\\
+a. 若X为第一可数空间且$A\subset X$，则$x\in \overline{A}$ \textrm{iff} $\exists\{x_j\}\in A$ \textrm{s.t. }$x_j\to x$ \newline
+b. 第二可数空间可分
+\end{proposition}
+
+\begin{remark}
+\autoref{Prop 4.3}中若无“第一可数”的条件限制，就要将“数列”改成“网”，见\autoref{Prop 4.9} (a). 第二可数空间可分，但一般可分空间不一定第二可数（见Exercise 6）；但可分度量空间的确第二可数（见Exercise 5）.
+\end{remark}
+
+\begin{defin}
+separation axioms \newline
+$T_0$ (Kolmogorov): 对$x\neq y$至少有一个开集包含其中一个点而不包含另一个点 \newline
+$T_1$: 对$x\neq y$有一个开集包含其中任一个点而不包含另一个点 \newline
+$T_2$ (Hausdorff): $x\neq y$ admits 2 disjoint open sets each containing each \newline
+$T_3$ (regular): $T_1$ + closed set A and $x\in A^c$ admits 2 disjoint open sets each containing each \newline
+$T_{3\frac{1}{2}}$ (Tychonoff, or completely regular):
+$$
+T_1\textrm{ + closed set} A\textrm{ and } x\in A^c \textrm{ admits } f\in C(X,[0,1]) \textrm{ s.t. } f(x)=1 \textrm{ and} \left.f\right|_A=0
+$$
+$T_4$ (normal): $T_1$ + closed sets $A\cap B$ admits  disjoint open sets each containing each
+\end{defin}
+
+\begin{proposition} \label{Prop 4.4}
+X is a $T_1$ space iff $\{x\}$ is closed for every $x\in X$
+\end{proposition}
+
+\begin{remark}
+\autoref{Prop 4.4} shows that every normal space is regular (by Urysohn's Lemma we can further deduce that every normal space is Tychonoff, and every Tychonoff space is regular), and every regular space is Hausdorff. In fact, most topological spaces that arises in practice are Hausdorff, or become Hausdorff after simple modifications.
+\end{remark}
+
+
+
+\subsection{Continuous Maps}
+\begin{proposition}~\\
+a. 映射在X上连续iff映射在X中每一点连续 \newline
+b. 若Y上拓扑$\mathscr{T}=\mathscr{T}(\mathscr{E})$，则$f:X\to Y$连续 iff $f^{-1}(V)$ is open in X for every $V\in \mathscr{E}$
+\end{proposition}
+
+\begin{defin}~\\
+homeomorphism: 双射+正反连续 \newline
+embedding: $f:X\to Y$ 非满单射，且当$f(X)$为$Y$的子拓扑空间时$f:X\to f(X)$为同胚映射 \newline
+weak topology generated by $\{f_\alpha:X\to Y_\alpha\}_{\alpha \in A}$:
+\[
+\mathscr{T}(\{f_\alpha\}_{\alpha \in A}):=\{f^{-1}_\alpha(U_\alpha)\mid \alpha \in A \textrm{ and } U_\alpha \subset \mathscr{T}_{Y_\alpha}\}
+\]
+product topology on the Cartesian product of topological spaces $X=\prod_{\alpha \in A}X_\alpha$:
+\[ \mathscr{T}(\{\pi_\alpha\}_{\alpha \in A})=\textrm{weak topology generated by }\{\pi_\alpha:X \to X_\alpha\}_{\alpha \in A}
+\]
+\end{defin}
+
+\begin{remark}
+Weak topology generated by $\{f_\alpha\}_{\alpha \in A}$ is the unique weakest topology on $X$ that makes all $f_\alpha$ continuous. Let $U_\alpha \subset \mathscr{T}_{X_\alpha}$ and $n\in \mathbb{N}$, a base for the product topology is given by
+\[
+\left\{\bigcap_{j=1}^{n}\pi^{-1}_{\alpha_j}(U_{\alpha_j})\right\} \textrm{ or } \left\{\prod_{\alpha \in A}U_\alpha \mid U_\alpha=X_\alpha \textrm{ for } \alpha \neq \alpha_1,...,\alpha_n\right\} 
+\]
+by \autoref{Prop 4.2} (c)
+\end{remark}
+
+\begin{proposition}\label{Prop 4.6}~\\
+a. 若每个拓扑空间Hausdorff，则积空间Hausdorff\newline
+b. $f:Y\to \prod_{\alpha \in A}X_\alpha$连续iff $\pi_\alpha \circ f$对$\alpha \in A$连续 \newline
+c. 设函数项数列$\{f_n\}\in X^A$，则$f_n$在积拓扑中收敛于$f$ iff $f_n$对A逐点收敛于$f$
+\end{proposition}
+
+\begin{defin}
+uniform norm of $f\in B(X,\mathbb{C})$: $||f||_u:=\sup{\{|f(x)|\mid x\in X\}}$
+\end{defin}
+
+\begin{remark}
+Uniform metric (or Chebyshev metric) on $B(X,\mathbb{C})$ is taken to be $\rho(f,g)=||f-g||_u$, and convergence with respect to this metric is uniform convergence on $X$. It's also easy to see that $B(X,\mathbb{C})$ is complete under the uniform metric.
+\end{remark}
+
+\begin{proposition}\label{Prop 4.7}~\\
+a. Chebyshev度量下$BC(X,\mathbb{C})$是$B(X,\mathbb{C})$的闭子集 \newline
+对$T4$空间X以及其中两个不相交的闭集A、B，设$\Delta=\{k2^{-n}\mid n\geq 1 \textrm{ and } 0<k<2^n\}\subset \mathbb{Q}$ \newline
+b. $\exists \{U_r\mid r\in \Delta\}\subset \mathscr{T}_X $ s.t. $A\subset U_r\subset B^c$ for all $r\in \Delta$ and $\overline{U}_r\subset U_s$ for $r<s$ \newline
+c. (Urysohn's Lemma) $\exists f\in C(X,[0,1])$ s.t. $\left.f\right|_A=1$ and $\left.f\right|_B=0$
+\end{proposition}
+
+\begin{remark}
+Numbers of the form in $\Delta$ are called dyadic numbers. Construct an inductive argument that uses the normality of $X$ repeatedly to prove \autoref{Prop 4.7} (b).
+\end{remark}
+
+\begin{theorem}\label{Prop 4.8} (The Tietze Extension Theorem) \newline
+设X为$T4$空间，$A\subset X$为闭集且$f\in C(A,[a,b])$，则$\exists F\in C(X,[a,b])$ s.t. $\left.F\right|_A=f$
+\end{theorem}
+
+
+
+\subsection{Nets}
+\begin{remark}~\\
+Sequential convergence is used to characterize continuity in metric spaces: a mapping from two metric spaces is continuous at $x$, if the corresponding sequence $f(x_n)$ of a converging sequence $x_n\to x$ converges to $f(x)$. This characterization fails in a more general setting of topological spaces:\\
+ \\
+Consider $\mathbb{R}_c$ equipped with cocountable topology and a sequence $x_n\to x$. The complement $A^c$ of its subset $A=\{x_n\neq x\mid n=1,2,...\}$ is an open neighborhood of $x$. Then by convergence $x_n$ is eventually in $A^c$, i.e. eventually constant $x_n=x$. The identity mapping from $\mathbb{R}$ equipped with the usual topology to $\mathbb{R}_c$ preserves sequential convergence but is not continuous, since $A^c$ is closed in $\mathbb{R}$. \\
+ \\
+Hence the need to generalize the concept of "sequence". To do that we relax the "well-ordering" condition while retaining some more preliminary "orders". 
+\end{remark}
+
+\begin{defin}~\\
+directed set:= 预序集+对有向性(任一对元素有上界) \newline
+net in set $X$:=  mapping $\langle x_\alpha\rangle_{\alpha \in A}:A\to X$ where $A$ is directed \newline
+A net $\langle x_\alpha\rangle_{\alpha \in A}$ is: \newline
+\indent eventually in E: $\exists \alpha_0 \in A$ s.t. $\alpha \succsim \alpha_0 \Rightarrow x_\alpha \in E$ \newline
+\indent frequently in E: for every $\alpha \in A$ $\exists \beta \succsim \alpha$ s.t. $x_\beta \in E$ \newline
+\indent $x$ is a limit of $\langle x_\alpha\rangle$: for every neighborhood $U$ of $x$, $\langle x_\alpha\rangle$ is eventually in U \newline
+\indent $x$ is a cluster point of $\langle x_\alpha\rangle$: for every neighborhood $U$ of $x$, $\langle x_\alpha\rangle$ is frequently in U
+\end{defin}
+
+\begin{proposition}\label{Prop 4.9}~\\
+a. E为拓扑空间X的子集且$x\in X$，则$x\in acc(E)$ iff $\exists \textrm{ E上网 } \langle e_\alpha\rangle$ s.t. $e_\alpha \to x$ \newline
+b. 对拓扑空间X和Y，$f\in C(X,Y)$ iff $\langle f(x_\alpha)\rangle$ 收敛于 $f(x)$ for all net $\langle x_\alpha\rangle$收敛于x
+\end{proposition}
+
+\begin{defin}
+subnet of net $\langle x_\alpha\rangle_{\alpha \in A}$:= mapping $\langle y_\beta\rangle_{\beta \in B}:B\to A$ by $\beta \mapsto \alpha_\beta$ satisfying $y_\beta=x_{\alpha_\beta}$ and
+\[
+\textrm{for all }\alpha_0\in A \textrm{ }\exists \beta_0\in B \textrm{ s.t. }\beta \succsim \beta_0 \Rightarrow \alpha_\beta \succsim \alpha_0
+\]
+\end{defin}
+
+\begin{remark}
+Subnet serves like subsequence, but unlike the case of sequence and subsequence, the mapping $\beta \mapsto \alpha_\beta$ need not be injective.
+\end{remark}
+
+\begin{proposition}
+对拓扑空间X上网$\langle x_\alpha\rangle_{\alpha \in A}$, $x\in X$是$\langle x_\alpha\rangle$的聚集点iff $\langle x_\alpha\rangle$有子网收敛于x
+\end{proposition}
+
+
+
+\subsection{Compact Spaces}
+\begin{defin}~\\
+compact: the Heine-Borel property (开覆盖admits有限子开覆盖) \newline
+precompact: the closure is compact \newline
+finite intersection property (FIP): for a family $\{F_\alpha\}_{\alpha \in A}$ of subsets of $X$,
+\[
+\bigcap_{\alpha \in B}F_\alpha \neq \emptyset
+\]
+holds for all finite $B\subset A$ \newline
+countably compact: every countable open cover has a finite sub-open cover
+\end{defin}
+
+\begin{proposition}\label{Prop 4.11}(closedness \& compactness)~\\
+a. compact iff $\bigcap_{\alpha \in A}F_\alpha \neq \emptyset$ holds for every family $\{F_\alpha\}_{\alpha \in A}$ of closed subsets with FIP\newline
+\textcolor{red}{proof outline: De Morgan's Law} \newline
+b. 紧致空间的闭子集紧致 \newline
+\textcolor{red}{proof outline: 考察闭集$F\subset X $的一组开覆盖和$\{F^c\}$的并集，它们构成$X$的一组开覆盖.}
+\end{proposition}
+
+\begin{proposition}\label{Prop 4.12}(compactness on Hausdorff space)~\\
+a. Hausdorff空间的紧致子集为闭集\newline
+\textcolor{red}{proof outline: 先证Hausdorff空间可以“区分”（admits disjoint open sets of）紧集和紧集之外的一点（在紧集中每一点选一个与紧集外那点不相交的闭邻域构成一个紧集的开覆盖）；进而$F^c$是开的.} \newline
+b. 紧致Hausdorff空间是正规的 \newline
+\textcolor{red}{proof outline: same as that of \autoref{Prop 4.12} (a)}
+\end{proposition}
+
+\begin{proposition}(compactness \& continuity)\label{Prop 4.13}
+连续映射保紧致性\newline
+\textcolor{red}{proof outline: 连续性定义是保开集的，而紧致性是开集族刻画的，自然连续性也保紧致性.}
+\end{proposition}
+
+\begin{remark}
+\autoref{Prop 4.13} 的两个显然推论：(i) 从紧致空间到Hausdorff空间之间的连续双射是同胚映射，亦即其逆映射连续 (ii) by \autoref{Prop 0.15} 对紧致的$X$, $C(X)=BC(X)$
+\end{remark}
+
+\begin{proposition} (\autoref{Prop 0.11} 的推广, Bolzano-Weierstrass property for compact topological space)~\\
+X is compact iff every net in X has a cluster point (convergent subnet) \newline
+\textcolor{red}{proof outline*: 先设$X$紧致，对$X$上网$\langle x_\alpha \rangle_{\alpha in A}$ 考察$E_\alpha=\{x_\beta\mid \beta \succsim \alpha\}$，并由$A$的对有向性推出$E_\alpha$的FIP，于是根据\autoref{Prop 4.11} (a) $\exists x\in \cap_{\alpha \in A}\overline{E}_\alpha$为聚集点.\newline 反之假设$X$非紧且$\{U_\beta\}_{\beta \in B}$为$X$的开覆盖，我们构造一个没有收敛子网的网；先构造$\mathscr{A}$为$B$中所有有限子集的集合并定义$P\precsim Q$当$P\subset Q$，可证$\mathscr{A}$为有向集，故对$A\in \mathscr{A}$选$x_A\in (\cup_{\beta\in A}U_\beta)^c$就构成了$X$上一网；对任何$x\in U_\beta \subset X$都可以验证$x_A$不频繁落入$U_\beta$中，即任何$x$都不是该网的聚集点.}
+\end{proposition}
+
+
+
+\subsection{Locally Compact Hausdorff Spaces}
+\begin{defin}
+locally compact: every point has a compact neighborhood
+\end{defin}
+
+\begin{proposition}\label{Prop 4.15}~\\
+对局部紧Hausdorff空间$(LCH\textrm{空间})$ X成立:\newline
+a. 任意$x\in X$的开邻域中可以找到一个包含在其内的紧邻域 \newline
+\textcolor{red}{proof outline: 设开邻域U，紧邻域F，则$U\cap F^o$构成预紧开邻域$U'$；按\autoref{Prop 4.12} (a)的证明$U'$中内点$x\in U'$和$\partial U'$admits不相交的开集V和W；按\autoref{Prop 4.11} (b) $\overline{V}$紧致，又$\overline{V}\subset U'$，故$\overline{V}$满足条件.} \newline
+b. 对满足$K\subset U\subset X$的紧集K和开集U存在预紧集V s.t. $K\subset V\subset \overline{V} \subset U$ \newline
+\textcolor{red}{proof outline: 按\autoref{Prop 4.15} (a)对每个$x\in K$选一个紧邻域$N_x\subset U$.}
+\end{proposition}
+
+\begin{proposition}~\\
+a. (Urysohn's Lemma in LCH) 将$\autoref{Prop 4.7} (c)$中“$T4$空间”改成“LCH空间”，“两个不相交的闭集”改成“两个不相交的闭集和紧集”；特别的，LCH空间完全正规\newline
+b. (Tietze Extension Theorem in LCH) 将$\autoref{Prop 4.8}$中的“$T4$空间”改成“LCH空间”，“闭集”改成“紧集”
+\end{proposition}
+
+\begin{defin}~\\
+(compact) support of $f\in C(X)$: (compact) $\supp(f):=\overline{\{x\mid f(x)\neq 0\}}$ \newline
+\indent the set of all compactly supported $f\in C(X)$: $C_c(X)$ \newline
+vanishes at infinity: set $\{x\mid |f(x)|\geq \epsilon \}$ is compact for every $\epsilon >0$\newline
+\indent the set of all $f$ that vanishes at infinity: $C_0(X)\supset C_c(X)$\newline
+partition of unity on $E\subset X$: $\{h_\alpha\}_{\alpha \in A}\subset C(X,[0,1]$ satisfying:\newline
+\indent (i) $\forall x\in X$ exists a neighborhood of $x$ on which $h_\alpha$ vanishes for all but finitely many $\alpha \in A$ \newline
+\indent (ii) $\sum_{\alpha \in A}h_\alpha(x)=1$ for all $x\in E$ \newline
+partition of unity $\{h_\alpha\}$ is subordinate to an open cover $\mathscr{U}$ of E if $\supp{h_\alpha}$ is contained in one set $U\in \mathscr{U}$ of the covering
+\end{defin}
+
+\begin{proposition}\label{Prop 4.17}~\\
+a. 对Chebyshev度量下的LCH空间X，$C_0(X)=\overline{C_c(X)}$\newline
+b. 设$\{\infty\}$不是非紧的LCH空间X中的一点，定义$X^*=X\cup \{\infty\}$并定义$X^*$上的拓扑$\mathscr{T}$为满足如下条件的集族：\newline
+\indent $(i)$ $U\in X_\mathscr{T}$ \newline
+\indent $(ii)$ $\infty \in U$ 且 $U^c$ 在X中紧致 \newline
+则$(X^*,\mathscr{T})$为紧致的Hausdorff空间，自然单射$i:X\to X^*$为一嵌入，且X上的连续映射可以自然扩展到$X^*$上的连续函数
+\end{proposition}
+
+\begin{remark}
+\autoref{Prop 4.17} (b)中的紧化方法称one-point (Alexandroff) compactification.
+\end{remark}
+
+\begin{proposition}~\\
+对LCH空间X中的紧集K和K的开覆盖$\Sigma=\{U_j\}_{1}^{n}$存在一个$E\in C_c(X,[0,1])$，构成K上从属于$\Sigma$的单位分解
+\end{proposition}
+
+\begin{remark}
+对$\mathbb{C}^X$上赋拓扑，在topology of pointwise convergence (亦即积拓扑，见\autoref{Prop 4.6} (c))和topology of uniform convergence之间有topology of compact convergence (uniform convergence on compact sets). 如在$C([0,1],\mathbb{C})$上的指数函数$f_n:x\mapsto x^n$紧收敛但不一致收敛.
+\end{remark}
+
+\begin{proposition}~\\
+a. LCH空间X中子集E是闭集iff 对每个紧致的$K\subset X$，$E\cap K$是闭集 \newline
+b. 对赋有uniform convergence on compact sets拓扑的LCH空间X，C(X)是$\mathbb{C}^X$中的闭子集
+\end{proposition}
+
+
+\begin{defin}
+$\sigma$ compact: 可数个紧集之并
+\end{defin}
+
+\begin{proposition}~\\
+$\sigma$-紧的LCH空间X上uniform convergence on compact sets拓扑第一可数，因为对任一$f\in \mathbb{C}^X$的邻域基
+\[
+\bigg\{g\in \mathbb{C}^X\mid \sup_{x\in \overline{U_n}}|f(x)-g(x)|<\frac{1}{m}\textrm{ for all }m,n\in \mathbb{N} \bigg\} 
+\]
+可数，其中$U_n$是满足$X=\bigcup_{1}^{\infty}U_n$和$\overline{U_n}\subset U_{n+1}$的X中预紧开集
+\end{proposition}
+
+
+
+\subsection{Two Compactness Theorems}
+\begin{proposition}(Tychonoff's Theorem)
+若每个拓扑空间紧致，则积空间紧致
+\end{proposition}
+
+\begin{defin}~\\
+$\mathscr{F}\subset C(X)$ is equicontinuous at $x\in X$: $\exists$ neighborhood $U$ of $x$ s.t. $|f(y)-f(x)|<\epsilon$ for all $y\in U$ and $\epsilon>0$ \newline
+$\mathscr{F}\subset C(X)$ is pointwise bounded: $\{f(x)\mid f\in \mathscr{F}\}$ is bounded in $\mathbb{C}$ for every $x\in X$
+\end{defin}
+
+\begin{proposition}~\\
+a. (Arzelà–Ascoli Theorem) 对紧致Hausdorff空间X，$\mathscr{F}\subset C(X)$等度连续$+$逐点有界$\Rightarrow$预紧$+$$(Chebyshev\textrm{度量下})$完全有界 \newline
+b. (Arzelà–Ascoli Theorem, 变体) 对$\sigma$-紧的LCH空间X，$C(X)$中函数列等度连续$+$逐点有界$\Rightarrow$ $\exists$一致收敛于某一$f\in C(X)$的子函数列
+\end{proposition}
+
+
+
+\subsection{The Stone-Weierstrass Theorem}
+
+\begin{defin}~\\
+separate points: $\{\mathscr{A}\in C(X)\mid \forall x,y\in X \textrm{ } \exists f\in \mathscr{A} \textrm{ s.t. }f(x)\neq f(y)\}$ \newline
+algebra: real (complex) vector field of $C(X)$ s.t. $f,g\in A\Rightarrow fg\in A$\newline
+lattice: $\{\mathscr{A}\in C(X)\mid f,g\in \mathscr{A} \Rightarrow \min (f,g), \max(f,g) \in \mathscr{A}\}$
+\end{defin}
+
+\begin{proposition}\label{Prop 4.23} (lemmas for \autoref{Prop 4.24}) \newline
+a. $\mathbb{R}^2$的子代数(under coordinatewise addition \& multiplication)为: $\mathbb{R}^2$, $\{(0,0)\}$, 及分别由$(0,1)$, $(1,0)$和$(1,1)$张成的子空间$\mathscr{L}((0,1))$, $\mathscr{L}((1,0))$, $\mathscr{L}((1,1))$ \newline
+\textcolor{red}{proof outline: linear dependency} \newline
+b. $\forall \epsilon>0$ $\exists$ polynomial of $\mathbb{R}$ s.t. $P(0)=0$ and $||x|-P(x)|<\epsilon$ for $x\in [-1,1]$ \newline
+\textcolor{red}{考察$(1-t)^{0.5}$的Maclaurin展开，得到一个级数；再用级数的部分和作为多项式逼近$(1-t)^{0.5}$；最后考虑怎么把$(1-t)^{0.5}$用$x$代替} \newline
+c. 对紧致Hausdorff空间X和$C(X,\mathbb{R})$的闭子代数$\mathscr{A}$, $f\in \mathscr{A}$ $\Rightarrow$ $(|f|\in \mathscr{A})\wedge(\mathscr{A}\textrm{ is a lattice})$ \newline
+\textcolor{red}{proof outline: 把$h=f/||f||_u$当作\autoref{Prop 4.23} (b)中的$x$用多项式逼近；第二个结论用一个常见的技巧: $\max(f,g)=(f+g+|f-g|)/2$} \newline
+d.对紧致Hausdorff空间X, $C(X,\mathbb{R})$的闭lattice $\mathscr{A}$和$f\in C(X,\mathbb{R})$, 若$\forall x,y\in X$ $\exists g_{x,y}\in \mathscr{A}$ s.t. $g_{x,y}(x)=f(x)$且$g_{x,y}(y)=f(y)$则$f\in \mathscr{A}$\newline
+\textcolor{red}{proof outline*: involves a trick of scaling double-indexed inequality——first fix one and manipulate one of them}
+\end{proposition}
+
+\begin{proposition}\label{Prop 4.24} (The Stone-Weierstrass Theorem) \newline
+Let $X$ be a compact Hausdorff space and $\mathscr{B}$ a subalgebra of $C(X,\mathbb{R})$ that separate points, then $\overline{\mathscr{B}}=\{f\in C(X,\mathbb{R})\mid f(x_0)=0\}$ iff $\exists x_0\in X$ s.t. $f(x_0)=0$; otherwise $\overline{\mathscr{B}}=C(X,\mathbb{R})$ \newline
+\textcolor{red}{考察$\mathbb{R}^2$的子代数$A_{xy}=\{(f(x),f(y))\mid f\in \overline{B}\}$}
+\end{proposition}
+
+\begin{remark}
+The Stone-Weierstrass Theorem does not hold for $C(X,\mathbb{C})$: Let
+\end{remark}
+
+\begin{proposition} (The Complex Stone-Weierstrass Theorem) \\
+
+\end{proposition}
+
+\begin{proposition} (The Stone-Weierstrass Theorem on noncompact LCH space)
+
+\end{proposition}
+
+\subsection{Embeddings in Cubes}
+
+
+
+
+\subsection{Exercises}
+2, 3 (度量空间$T4$), 5 (可分度量空间第二可数), 6 (用Sorgenfrey line $\mathbb{R}_l$构造 \autoref{Prop 4.3} (b)逆命题的反例), 11 \\
+\newline
+15-17, 19, 21, 22, 24, 28, 29 \\
+30-34 \\
+38, 39, 43 \\
+49, 54 \\
+59-61, 63, 64 \\
+66-70 \\
+\newpage
+
+\section{Elements of Funcational Analysis}
+
+
+
+\subsection{Recommended Exercises}
+1-9, 12, 13, 15 \\
+17-20, 22, 25 \\
+29-42 \\
+44-48, 50-53 \\
+54-64, 66, 67 \\
+\end{document}
+
+
+\end{document}
