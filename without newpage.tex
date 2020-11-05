@@ -9,10 +9,13 @@
 \usepackage{xcolor}
 \usepackage{gensymb}
 \usepackage{marvosym}
+\usepackage{mathrsfs}
 \usepackage{enumitem}
 \usepackage[toc]{multitoc}
 \renewcommand*{\multicolumntoc}{2}
 \setlength{\columnseprule}{1pt}
+\usepackage{tikz}
+\usetikzlibrary{arrows,matrix,positioning}
 
 \setlength\parindent{0pt}
 
@@ -617,7 +620,7 @@ Let $\{f_n\},\{g_n\}$ be sequences of non-negative, monotonically increasing sim
 
 \begin{defin}
 The \textbf{integral} of a $\mathscr{F}$-measurable \emph{non-negative} function $f$: \[I(f)=\lim I(f_n)\]
-for $\{f_n\}$ a monotonically increasing sequence of non-negative simple functions that (pointwise) converges to $f$.\newline
+for $\{f_n\}$ a monotonically increasing sequence of non-negative \emph{simple} functions that (pointwise) converges to $f$.\newline
 A $\mathscr{F}$-measurable function $f$ is \textbf{integrable} if both $I(f^+),I(f^-)<\infty$, and the \textbf{integral} of it is
 \[I(f)=I(f^+)-I(f^-)\]
 \end{defin}
@@ -646,13 +649,19 @@ Let $(\Omega,\mathscr{F},\mu)$ be the measure space, $\mathscr{F}$-measurable fu
 \begin{enumerate}[label=\arabic*\degree]
     \item $cf+g$ is integrable
     \item $1_Af$ is integrable
-    \item $I(1_{A\cup B}f)=I(1_Af)+I(1_Bf)$
+    \item $I(1_{A\coprod B}f)=I(1_Af)+I(1_Bf)$
 \end{enumerate}
 \end{proposition}
 
 \begin{remark}
-Denote $I(f)=\int f\,d\mu$ and $I(1_Af)=\int_A f\,d\mu$.
+3\degree\ is only valid for \emph{finite} disjoint unions. For the countable case see \hyperref[CLM 11.30]{CLM 11.30}.
 \end{remark}
+
+\bigbreak
+
+From on now denote $I(f)=\int f\,d\mu$ and $I(1_Af)=\int_A f\,d\mu$.
+
+\medbreak
 
 \begin{claim}
 Let $f\geq0$ be integrable and $E:\mu(E)=0$, then $\int_Ef\,d\mu=0$
@@ -699,6 +708,46 @@ Let $f$ be $\mathscr{F}$-measurable and $E\in\Omega$ with finite measure. If $|f
 \section*{\S11. Convergence of integrals}
 \setcounter{section}{11}
 \addcontentsline{toc}{section}{\protect\numberline{}\S11. Convergence of integrals}
+
+\begin{proposition}\label{PROP 11.14}
+Let $\{f_n\}_{n\geq1}$ be a sequence of non-negative $\mathscr{F}$-measurable functions that increases to $f$, then
+\[\lim_n\int f_n\,d\mu=\int f\,d\mu\]
+\end{proposition}
+\textcolor{red}{A very very smart construction: Let $\{g_{i,j}\}_{j\geq1}$ be a sequence of non-negative simple functions increasing to $f_i$, then construct sequence $\{g_k\}$ s.t. $g_k=\max\limits_{1\leq i\leq j}g_{i,j}$:}
+$$\begin{matrix}
+g_1 & g_2 & g_3 & \dots & g\\
+\textcolor{red}{g_{11}} & \textcolor{red}{g_{12}} & \textcolor{red}{g_{13}} & \dots & f_1\\
+g_{21} & \textcolor{red}{g_{22}} & \textcolor{red}{g_{23}} & \dots & f_2\\
+g_{31} & g_{32} & \textcolor{red}{g_{33}} & \dots & f_3\\
+\vdots & \vdots & \vdots & & \vdots
+\end{matrix}$$
+\begin{center}
+    (Taking the maximum of \textcolor{red}{red entries} in each column)
+\end{center}
+\textcolor{red}{Then it's easy to see that $\{g_k\}$ is \emph{simple} and increases to $f$, and $g_k\leq f_k$. Hence by definition
+\[\int f\,d\mu=\lim_k\int g_k\,d\mu\]
+From here prove
+\[\lim\sup_k\int f_k\,d\mu\leq\int f\,d\mu\leq\lim\inf_k\int f_k\,d\mu\]
+Notice we have to use limit inferior/superior since we don't know if $\int f_k\,d\mu$ is monotonic or not.}
+
+\begin{claim}\label{CLM 11.30}
+Let $(\Omega,\mathscr{F},\mu)$ be a measure space and $f$ a non-negative $\mathscr{F}$-measurable function, then $\mu_f:\mathscr{F}\to\overline{\mathbb{R}^+}$ defined by
+\[\mu_f(A)=\int_Af\,d\mu\]
+is a measure.
+\end{claim}
+\textcolor{red}{Construct a sequence that takes value on the partial disjoint union and apply \hyperref[PROP 11.14]{PROP 11.14}.}
+
+\begin{defin}
+For measures $\mu,\nu$ on $(\Omega,\mathscr{F})$, $\mu$ is \textbf{absolute continuous} with respect to $\nu$ ($\mu\ll\nu$):
+\[\nu(A)=0\Rightarrow\mu(A)=0\]
+\end{defin}
+
+\begin{eg}~
+\begin{enumerate}[label=\arabic*\degree]
+    \item $\mu_f$ defined in \hyperref[CLM 11.30]{CLM 11.30} is absolute continuous w.r.t $\mu$
+    \item
+\end{enumerate}
+\end{eg}
 
 \bigbreak
 
