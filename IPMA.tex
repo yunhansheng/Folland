@@ -308,7 +308,7 @@ $\pi^*(\coprod\limits_jA_j)=\sum\limits_j\pi^*(A_j)$:\newline
 the $\leq$ part follows from subadditivity of $\pi^*$, the $\geq$ part follows the finite case by taking $n\to\infty$}
 
 \begin{defin}
-$\Omega$ is \textbf{$\sigma$-finite} for $\mu$ if $\exists \{E_j\}\in\Omega\ \forall j:(E_j\uparrow\Omega)\wedge(\mu(E_j)<\infty)$
+$\Omega$ is \textbf{$\sigma$-finite} for $\mu$ if $\exists\{E_j\}\in\Omega$ s.t. $E_j\uparrow\Omega$ and $\mu(E_j)<\infty$
 \end{defin}
 
 \begin{defin}
@@ -365,7 +365,7 @@ Construct Lebesgue measure: let semi-álgebra \[\mathscr{S}=\{\emptyset,\mathbb{
 \end{enumerate}
 By \hyperref[Prop 2.3]{Prop 2.3} $\mu$ extends uniquely to additive $\nu:\mathscr{A}(\mathscr{S})\to\overline{\mathbb{R}_+}$
 
-\begin{proposition}
+\begin{proposition}\label{PROP 5.7}
 $\mu$ defined above is $\sigma$-additive, i.e.
 \[\forall A_j,A=\coprod_{j\geq1}A_j\in\mathscr{S}:\mu(A)=\sum_{j\geq1}\mu(A_j)\]
 \end{proposition}
@@ -731,8 +731,11 @@ From here prove
 Notice we have to use limit inferior/superior since we don't know if $\int f_k\,d\mu$ is monotonic or not.}
 
 \begin{claim}\label{CLM 11.30}
-Let $(\Omega,\mathscr{F},\mu)$ be a measure space and $f$ a non-negative $\mathscr{F}$-measurable function, then $\mu_f:\mathscr{F}\to\overline{\mathbb{R}^+}$ defined by
-\[\mu_f(A)=\int_Af\,d\mu\]
+Let $(\Omega,\mathscr{F},\mu)$ be a measure space and $f$ a non-negative $\mathscr{F}$-measurable function, then
+\begin{align*}
+\mu_f:\ &\mathscr{F}\to\overline{\mathbb{R}^+}\\
+&A\mapsto\int_Af\,d\mu
+\end{align*}
 is a measure.
 \end{claim}
 \textcolor{red}{Construct a sequence that takes value on the partial disjoint union and apply \hyperref[PROP 11.14]{PROP 11.14}.}
@@ -811,17 +814,32 @@ Let $A\in\Omega_1\times\Omega_2$, then $\forall x\in\Omega_1$ (resp. $y\in\Omega
 \end{defin}
 
 \begin{claim}
-If $A\in\mathscr{F}=\mathscr{F}_1\ast\mathscr{F}_2$, then $\forall x\in\Omega_1:A_x\in\mathscr{F}_2$
+If $A\in\mathscr{F}=\mathscr{F}_1\ast\mathscr{F}_2$, then $\forall x\in\Omega_1:A_x\in\mathscr{F}_2$; similarly, $\forall y\in\Omega_2:A^y\in\mathscr{F}_1$
 \end{claim}
+\textcolor{red}{Let $\mathscr{C}=\{A\in\mathscr{F}_1\ast\mathscr{F}_2:(\forall x\in\Omega_1:A_x\in\mathscr{F}_2)\}\subset\mathscr{F}_1\ast\mathscr{F}_2$. To prove the other direction, prove $\mathscr{C}\supset\mathscr{F}_1\times\mathscr{F}_2$ and that $\mathscr{C}$ is a $\sigma$-álgebra.}
 
 \begin{proposition}
-Let $(\Omega_1,\mathscr{F}_1,\mu_1)$ and $(\Omega_2,\mathscr{F}_2,\mu_2)$ be measure spaces. The function $\mu:\mathscr{F}_1\times\mathscr{F}_2\to\overline{\mathbb{R}}_+$ by
+Let $(\Omega_1,\mathscr{F}_1,\mu_1)$ and $(\Omega_2,\mathscr{F}_2,\mu_2)$ be measure spaces, then $\mu:\mathscr{F}_1\times\mathscr{F}_2\to\overline{\mathbb{R}}_+$ by
 \[\mu(E_1\times E_2)=\begin{cases}
   \mu_1(E_1)\mu_2(E_2) & \mu_1(E_1),\mu_2(E_2)\neq0\\
   0 & \textrm{otherwise}
   \end{cases}\]
 is $\sigma$-additive.
 \end{proposition}
+\textcolor{red}{As in \hyperref[PROP 5.7]{PROP 5.7} we will prove the additivity first.\newline
+Let $A=E\times F,A_j=E_j\times F_j\in\mathscr{F}_1\times\mathscr{F}_2$, then
+\[F1_{\{x\in E\}}=A_x=(\coprod_{j=1}^nA_j)_x\overset{!}{=}\coprod_{j=1}^n(A_j)_x=\coprod_{j=1}^nF_j1_{\{x\in E_j\}}\]
+! marks that $(A_j)_x$s are disjoint for $j$s. Then take $\mu_2$ on both side and integrate w.r.t. $\mu_1$
+\[\mu(F)=\int\mu_2(F)1_{\{x\in E\}}\,d\mu_1=\int\sum_{j=1}^n\mu_2(F_j)1_{\{x\in E_j\}}\,d\mu_1\overset{!!}{=}\sum_{j=1}^n\mu(A_j)\]
+In the case of $\sigma$-additivity, the !! step (exchanging integral with countable sum) is guaranteed by \hyperref[PROP 11.14]{PROP 11.14}.}
+
+\begin{claim}
+If $\Omega_1,\Omega_2$ are $\sigma$-finite for $\mu_1,\mu_2$ resp., then $\Omega=\Omega_1\times\Omega_2$ is $\sigma$-finite for $\mu$ as above.
+\end{claim}
+
+\bigbreak
+
+Hence we can use Carathéodory's Theorem to extend $\mu$ defined above \emph{uniquely} on $\mathscr{F}_1\ast\mathscr{F}_2$, which will be called the \textbf{product measure}.
 
 \bigbreak
 
