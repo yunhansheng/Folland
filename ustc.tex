@@ -1,0 +1,83 @@
+\documentclass[hidelinks]{article}
+
+\usepackage{xeCJK}
+\usepackage[a4paper,top=3cm,bottom=3cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts}
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+
+\setlength\parindent{0pt}
+
+\newtheoremstyle{dotless}{}{}{\itshape}{}{\bfseries}{}{ }{}
+
+\theoremstyle{definition}
+\newtheorem*{defin}{DEF}
+\newtheorem*{eg}{EG}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\theoremstyle{plain}
+\newtheorem*{claim}{CLM}
+
+\theoremstyle{dotless}
+\newtheorem{innercustomthm}{PROP}
+\newenvironment{proposition}[1]
+  {\renewcommand\theinnercustomthm{#1}\innercustomthm}
+  {\endinnercustomthm}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=false}
+
+
+
+\begin{document}
+\begin{enumerate}[一、]
+    \item（共35分，每题7分）
+    \begin{enumerate}[(1).] 
+        \item 求极限$\displaystyle\lim_{n\to+\infty}\sqrt[\leftroot{-2}\uproot{2}n]{1+\frac{1}{2}+\dots+\frac{1}{n}}$
+        \item 求极限$\displaystyle\lim_{x\to+\infty}\frac{2xe^{\frac{1}{x}}+\cos(x)}{x}$
+        \item  求极限$\displaystyle\lim_{x\to0}\frac{\sqrt{1+x}-\sqrt[6]{1+x}}{\sqrt[3]{1+x}-1}$
+        \item 设$f(x)=(\sin(x))^{\cos(x)}$，计算$f'(x)$
+        \item 计算$f(x)=\sqrt[3]{2-\cos(x)}$在$x=0$处的直到$x^5$的Taylor公式
+    \end{enumerate}
+\end{enumerate}
+\begin{enumerate}[二、]
+    \item（7分）设
+    \[a_0=\frac{1}{2},a_{n+1}=a_n(2-a_n),n=0,1,2,\dots\]
+    试证：数列$\{a_n\}$收敛，并计算$\displaystyle\lim_{n\to+\infty}a_n$
+\end{enumerate}
+\begin{enumerate}[三、]
+    \item（10分）设函数
+    \[f(x)=\begin{cases}
+    (x+a-2)^2\sin(\frac{1}{x}),&x>0\\
+    0,&x=0\\
+    x\cos(x)+(b-1)(1-x)^{\frac{1}{x}},&x<0
+    \end{cases}\]
+    试问常数$a,b$为何值时，函数$f(x)$在$x=0$处连续？此时是否在$x=0$可导？
+\end{enumerate}
+\begin{enumerate}[四、]
+    \item（8分）试证：方程$x^2=x\sin(x)+\cos(x)-\frac{1}{2}$恰好只有两个不同的实根
+\end{enumerate}
+\begin{enumerate}[五、]
+    \item（10分）设$a<b<c$，$f(x)$分别在$(a,b]$和$[b,c)$上一致连续,证明$f(x)$在$(a,c)$上一致连续
+\end{enumerate}
+\begin{enumerate}[六、]
+    \item（10分）求椭圆$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$在第一象限的切线，使得其与坐标轴围成的三角形的面积最小
+\end{enumerate}
+\begin{enumerate}[七、]
+    \item（10分）设$f(x)$在$[a,b]$上连续，在$(a,b)$上可导，且$ab>0$。求证：存在$\xi\in(a,b)$使得
+    \[\frac{af(b)-bf(a)}{a-b}=f(\xi)-\xi f'(\xi)\]
+\end{enumerate}
+
+
+
+
+
+
+\end{document}
