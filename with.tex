@@ -11,6 +11,7 @@
 \usepackage[OT1]{fontenc}
 \usepackage{physics}
 \usepackage{xpatch}
+\usepackage{nicefrac}
 
 \setlength\parindent{0pt}
 
@@ -323,5 +324,45 @@ We could further arrange that $\sup_{x\in X}|g(x)|\leq\sup_{x\in X}|f(x)|$
 \begin{exercise}{2.1}
 r
 \end{exercise}
+
+\newpage
+
+\section{$L^p$-Spaces}
+
+\subsection{Convexity and basic inequalities}
+
+\begin{defin}~\\
+A real function $\psi$ is \textbf{convex} on $(a,b)\in\overline{\mathbb{R}}$ if $\forall\,x,y\in(a,b)\ \forall\,\lambda\in[0,1]:\psi((1-\lambda)x+\lambda y\leq(1-\lambda)\psi(x)+\lambda\psi(y)$\bigbreak
+\textbf{conjugate exponent}: positive extended-real numbers s.t. $p+q=pq$
+\end{defin}
+
+\begin{proposition}
+The following statements regarding the convexity of $psi$ on $(a.b)$ holds:\begin{itemize}
+    \item Graphically a point $(t,\psi(t))$ on the curve lies on or below the line connecting $(x,\psi(x))$ and $(y,\psi(y))$ for $a<x<t<y<b$
+    \item $\forall\,a<x<t<y<b:(u-t)(\psi(t)-\psi(s))\leq(t-s)(\psi(u)-\psi(t))$
+    \item $\psi$ is continuous on $(a,b)$
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}[Jensen's Inequality]
+Let $(\Omega,\mathfrak{M},\mu)$ be a measure space with $\mu(\Omega)=1$. If $\psi$ is convex on $(a,b)\subset\overline{\mathbb{R}}$ and real-valued $f\in L^1(\mu)$ satisfies $a<f<b$ on $\Omega$ then
+\[\psi\left(\int_\Omega f\,d\mu\right)\leq\int_\Omega(\psi\circ f)\,d\mu\]
+\end{proposition}
+
+\begin{proposition}[Hölder's Inequality]
+Let $p,q$ be conjugate exponents and $1<p<\infty$ and $f,g$ be non-negative measurable functions on measure space $(X,\mathfrak{M},\mu)$, then
+\[\int_Xfg\,d\mu\leq\bigg\{\int_Xf^p\,d\mu\bigg\}^{\nicefrac{1}{p}}\bigg\{\int_Xg^q\,d\mu\bigg\}^{\nicefrac{1}{q}}\]
+\end{proposition}
+
+\begin{proposition}[Minkowski's Inequality]
+Let $f,g$ be non-negative measurable functions on measure space $(X,\mathfrak{M},\mu)$ and $1<p<\infty$, then
+\[\bigg\{\int_X(f+g)^p\,d\mu\bigg\}^{\nicefrac{1}{p}}\leq\bigg\{\int_Xf^p\,d\mu\bigg\}^{\nicefrac{1}{p}}+\bigg\{\int_Xg^p\,d\mu\bigg\}^{\nicefrac{1}{p}}\]
+\end{proposition}
+
+\subsection{The $L^p$-spaces}
+
+\subsection*{Exercises}
+
+
 
 \end{document}
