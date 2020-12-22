@@ -128,6 +128,11 @@ are \textbf{Lebesgue integrable functions} or \textbf{summable functions}
 The assumption $0\cdot\infty=0$ is made so that commutativity, associativity, and distributive laws hold in $[0,\infty]$.
 \end{remark}
 
+\begin{proposition}[Lebesgue's Monotone Convergence Theorem]
+Let $\{f_n:X\to[0,\infty]\}$ be a monotonically increasing sequence of measurable functions, then
+\[\lim_{n\to\infty}\int_Xf_n\,d\mu=\int_X\lim_{n\to\infty}f_n\,d\mu\]
+\end{proposition}
+
 \begin{proposition}
 Let $f:(X,\mathfrak{M},\mu)\to[0,\infty]$ be measurable, then\begin{itemize}
     \item If $E,F\in\mathfrak{M}$, $E\subset F$, $f\leq g$, and $c\in[0,\infty)$ then
@@ -138,11 +143,6 @@ Let $f:(X,\mathfrak{M},\mu)\to[0,\infty]$ be measurable, then\begin{itemize}
     \[\int_Xg\,d\phi=\int_Xgf\,d\mu\]
     for all measurable $g:X\to[0,\infty]$
 \end{itemize}
-\end{proposition}
-
-\begin{proposition}[Lebesgue's Monotone Convergence Theorem]
-Let $\{f_n:X\to[0,\infty]\}$ be a monotonically increasing sequence of measurable functions, then
-\[\lim_{n\to\infty}\int_Xf_n\,d\mu=\int_X\lim_{n\to\infty}f_n\,d\mu\]
 \end{proposition}
 
 \begin{proposition}[Fatou's Lemma]
@@ -206,6 +206,34 @@ cardinality of the continuum $\mathfrak{c}$
 \begin{exercise}{1.3}
 real $\rightarrow$ rational generalization of \hyperref[Prop 1.2]{Prop 1.2}
 \end{exercise}
+
+\begin{exercise}{1.4}
+limit superior/inferior
+\end{exercise}
+
+\begin{exercise}{1.5}
+for (b) use Cauchy sequence to characterize
+\end{exercise}
+
+\begin{exercise}{1.6}
+assume the measurable functions are real-valued
+\end{exercise}
+
+\begin{exercise}{1.7}
+use Lebesgue's Dominated Convergence Theorem
+\end{exercise}
+
+\begin{exercise}{1.8}
+strict equality of Fatou's Lemma
+\end{exercise}
+
+\begin{exercise}{1.9}
+apply L'Hospital's rule
+\end{exercise}
+
+\begin{remark}
+Redo 1.4(b), 1.5, 1.6
+\end{remark}
 
 \newpage
 
