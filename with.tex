@@ -37,6 +37,7 @@
 \DeclareMathOperator\supp{supp}
 \DeclareMathOperator\vol{vol}
 \DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\esssup}{ess\,sup}
 
 \usepackage{hyperref}
 \hypersetup{colorlinks=false}
@@ -134,7 +135,7 @@ Let $\{f_n:X\to[0,\infty]\}$ be a monotonically increasing sequence of measurabl
 \[\lim_{n\to\infty}\int_Xf_n\,d\mu=\int_X\lim_{n\to\infty}f_n\,d\mu\]
 \end{proposition}
 
-\begin{proposition}
+\begin{proposition}\label{Prop 1.7}
 Let $f:(X,\mathfrak{M},\mu)\to[0,\infty]$ be measurable, then\begin{itemize}
     \item If $E,F\in\mathfrak{M}$, $E\subset F$, $f\leq g$, and $c\in[0,\infty)$ then
     \[\int_Ef\,d\mu\leq\int_Eg\,d\mu,\int_Ef\,d\mu\leq\int_Ff\,d\mu,\int_Ecf\,d\mu=c\int_Ef\,d\mu\]
@@ -229,11 +230,27 @@ strict equality of Fatou's Lemma
 \end{exercise}
 
 \begin{exercise}{1.9}
-apply L'Hospital's rule
+
+\end{exercise}
+
+\begin{exercise}{1.10}
+
+\end{exercise}
+
+\begin{exercise}{1.11}
+very nice construction!
+\end{exercise}
+
+\begin{exercise}{1.12}
+use \hyperref[Prop 1.7]{Prop 1.7}
+\end{exercise}
+
+\begin{exercise}{1.13}
+$\psi(E_k)=\int_X\chi_{E_k}\,d\psi=\int_X\chi_{E_k}\abs{f}\,d\mu\to0$, since $\mu(E_k)\to0$
 \end{exercise}
 
 \begin{remark}
-Redo 1.4(b), 1.5, 1.6
+Redo 1.4(b), 1.5, 1.6, 1.9, 1.10
 \end{remark}
 
 \newpage
@@ -244,7 +261,9 @@ Redo 1.4(b), 1.5, 1.6
 
 \begin{defin}~\\
 \textbf{support} of $f$: $\supp(f)=\overline{A}$ for $A=\{x:f(x)\neq0\}$\newline
-$C_c(X)$: the vector space formed by complex continuous functions on $X$ whose support is compact\bigbreak
+$C_c(X)$: the vector space formed by complex continuous functions on $X$ whose support is compact\newline
+A complex function $f$ on $X$ \textbf{vanishes at infinity} if $\forall\,\epsilon>0\ \exists$ compact $K\subset X\ \forall\,x\not\in K:\abs{f(x)}<\epsilon$\newline
+$C_0(X)$: the class of functions on $X$ that vanishes at infinity\bigbreak
 $K\prec f$: $K$ is compact in $X$, $f\in C_c(X)$, $0\leq f\leq1$, and $f_K=1$\newline
 $f\prec V$: $V$ is open in $X$, $f\in C_c(X)$, $0\leq f\leq1$, and $\supp(f)\subset V$\bigbreak
 $F_\sigma$ set: countable union of closed sets\newline
@@ -273,7 +292,7 @@ for $i=1,2,...,n$
 \subsection{Riesz Representation Theorem, regularity, and the construction of Lebesgue measure}
 
 \begin{defin}~\\
-\textbf{linear functional}: linear transformation whose space is the field of scalars\newline
+\textbf{linear functional}: linear transformation whose target space is the field of scalars\newline
 A linear function $\Lambda$ is \textbf{positive} if $f\geq0\Rightarrow\Lambda f\geq0$\bigbreak
 \textbf{lower semicontinuous}: $\{x:f(x)>\alpha,\ \forall\alpha\in\mathbb{R}\}$ is open, $\forall\,\alpha\in\mathbb{R}$\newline
 \textbf{upper semicontinuous}: $\{x:f(x)<\alpha,\ \forall\alpha\in\mathbb{R}\}$ is open, $\forall\,\alpha\in\mathbb{R}$\bigbreak
@@ -337,7 +356,7 @@ A real function $\psi$ is \textbf{convex} on $(a,b)\in\overline{\mathbb{R}}$ if 
 \end{defin}
 
 \begin{proposition}
-The following statements regarding the convexity of $psi$ on $(a.b)$ holds:\begin{itemize}
+The following statements regarding the convexity of $\psi$ on $(a.b)$ holds:\begin{itemize}
     \item Graphically a point $(t,\psi(t))$ on the curve lies on or below the line connecting $(x,\psi(x))$ and $(y,\psi(y))$ for $a<x<t<y<b$
     \item $\forall\,a<x<t<y<b:(u-t)(\psi(t)-\psi(s))\leq(t-s)(\psi(u)-\psi(t))$
     \item $\psi$ is continuous on $(a,b)$
@@ -360,6 +379,26 @@ Let $f,g$ be non-negative measurable functions on measure space $(X,\mathfrak{M}
 \end{proposition}
 
 \subsection{The $L^p$-spaces}
+
+\begin{defin}~\\
+Let $f:X\to[0,\infty]$ be measurable and $S=\{\alpha:\mu(f^{-1}((\alpha,\infty]))=0\}$, the \textbf{essential supremum} of $f$ is
+\[\esssup f=\begin{cases}
+\inf S,&S\neq\varnothing\\
+\infty,&S=\varnothing
+\end{cases}\]\bigbreak
+Let $f$ be a complex measurable function on $X$, the \textbf{$L^p$-norm} of $f$ is\begin{itemize}
+    \item $\norm{f}_p=\big\{\int_X\abs{f}^p\,d\mu\big\}^{\nicefrac{1}{p}}$, if $0<p<\infty$
+    \item $\norm{f}_\infty=\esssup\abs{f}$
+\end{itemize}
+$L^p$-space is $L^p(\mu)=\{\textrm{complex measurable functions }f:\norm{f}_p<\infty\}$, the members of $L^\infty(\mu)$ are \textbf{essentially bounded}.
+\end{defin}
+
+\begin{proposition}
+Let $X$ be a Locally compact Hausdorff space, then\begin{itemize}
+    \item $L^p(\mu)$ is the completion of $C_c(X)$ w.r.t. the $L^p$-norm metric, if $1\leq p<\infty$
+    \item $C_0(X)$ is the completion of $C_c(X)$ w.r.t the supremum-norm metric defined by $\norm{f}=\sup_{x\in X}\abs{f(x)}$
+\end{itemize}
+\end{proposition}
 
 \subsection*{Exercises}
 
