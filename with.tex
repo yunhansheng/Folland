@@ -46,6 +46,7 @@
 
 \begin{document}
 \tableofcontents
+\newpage
 
 \section{Abstract Integration}
 
@@ -294,14 +295,14 @@ for $i=1,2,...,n$
 \begin{defin}~\\
 \textbf{linear functional}: linear transformation whose target space is the field of scalars\newline
 A linear function $\Lambda$ is \textbf{positive} if $f\geq0\Rightarrow\Lambda f\geq0$\bigbreak
-\textbf{lower semicontinuous}: $\{x:f(x)>\alpha,\ \forall\alpha\in\mathbb{R}\}$ is open, $\forall\,\alpha\in\mathbb{R}$\newline
-\textbf{upper semicontinuous}: $\{x:f(x)<\alpha,\ \forall\alpha\in\mathbb{R}\}$ is open, $\forall\,\alpha\in\mathbb{R}$\bigbreak
+\textbf{lower semicontinuous}: $\{x:f(x)>\alpha,\ \forall\alpha\in\mathbb{R}\}$ is open\newline
+\textbf{upper semicontinuous}: $\{x:f(x)<\alpha,\ \forall\alpha\in\mathbb{R}\}$ is open\bigbreak
 \textbf{outer regular}: $\mu(E)=\inf\{\mu(V):E\subset V\textrm{ and }V\textrm{ open}\}$\newline
 \textbf{inner regular}: $\mu(E)=\inf\{\mu(K):E\subset K\textrm{ and }E\textrm{ compact}\}$\newline
 A measure is \textbf{regular} if every measurable set is both inner and outer regular.\bigbreak
 \textbf{Borel measure}: measure defined on the $\sigma$-algebra of all Borel sets in a locally compact Hausdorff space\bigbreak
-A set is \textbf{$\sigma$-compact} if it is a countable union of compact sets\newline
-A set has \textbf{$\sigma$-finite} measure if it is a countable union of finite-measure sets
+A set is \textbf{$\sigma$-compact} if it is a countable union of compact sets.\newline
+A set has \textbf{$\sigma$-finite} measure if it is a countable union of finite-measure sets.
 \end{defin}
 
 \begin{proposition}[Riesz Representation Theorem]\label{Prop 2.4}Let $X$ be a locally compact Hausdorff space and $\Lambda$ a positive linear functional on $C_c(X)$, then $\exists$ a $\sigma$-algebra $\mathfrak{M}$ that contains all Borel sets in X, and a unique positive measure $\mu$ on $\mathfrak{M}$ that represents $\Lambda$, i.e. $\forall f\in C_c(X):\Lambda  f=\int_Xf\,d\mu$, satisfying\begin{itemize}
@@ -341,8 +342,20 @@ We could further arrange that $\sup_{x\in X}|g(x)|\leq\sup_{x\in X}|f(x)|$
 \subsection*{Exercises}
 
 \begin{exercise}{2.1}
-r
+characteristic functions of open/closed sets
 \end{exercise}
+
+\begin{exercise}{2.2}
+$\psi(x)=\lim_{\delta\to0}\psi(x,\delta)$
+\end{exercise}
+
+\begin{exercise}{2.3}
+stupid inequality skill
+\end{exercise}
+
+\begin{remark}
+Redo: 2.1, 2.2, 2.3
+\end{remark}
 
 \newpage
 
@@ -401,6 +414,46 @@ Let $X$ be a Locally compact Hausdorff space, then\begin{itemize}
 \end{proposition}
 
 \subsection*{Exercises}
+
+\begin{exercise}{3.1}
+r
+\end{exercise}
+
+\newpage
+
+\section{Elementary Hilbert Space Theory}
+
+\subsection{Inner product and Hilbert space}
+
+\begin{defin}~\\
+Let $H$ be a complex vector space, the \textbf{inner product} $(x,y)$ for $x,y,z\in H$ is a complex number that satisfies:\begin{itemize}
+    \item $(y,x)=\overline{(x,y)}$
+    \item $(\alpha x+y,z)=\alpha[(x,z)+(y,z)]$
+    \item $(x,x)\geq0$, the equality holds only if $x=0$
+\end{itemize}
+Space $H$ endowed with inner product is a \textbf{inner product space}.\bigbreak
+\textbf{norm} of $x\in H$: $\norm{x}=(x,x)^{\nicefrac{1}{2}}$\bigbreak
+A set $E$ in a vector space $V$ is \textbf{convex} if $\forall\,x,y\in E\ \forall\,t\in(0,1):z=(1-t)x+ty\in E$\newline
+$x$ is \textbf{orthogonal} to $y$, or $x\perp y$, if $(x,y)=0$, the set of all $y\in H$ that are orthogonal to $x$ is $x^\perp$, and the set of all $y\in H$ that are orthogonal to every $x\in M$ for some $M\subset H$ is $M^\perp$
+\end{defin}
+
+\begin{proposition}
+Every nonempty, closed, convex set $E$ in a Hilbert space $H$ contains a unique element of smallest norm. 
+\end{proposition}
+
+\begin{proposition}
+Let $M$ be a closed subspace of a Hilbert space $H$, then $\exists$ \textbf{orthogonal projections} $P,Q$ of $H$ onto $M$ and $M^\perp$ satisfying\begin{itemize}
+    \item $\forall\,x\in H\ \exists!$ decomposition $x=Px+Qx$ s.t. $Px\in M$ and $Qx\in M^\perp$, hence $\norm{x}^2=\norm{Px}^2+\norm{Qx}^2$
+    \item $P:H\to M$ and $Q:H\to M^\perp$ are linear functionals
+    \item $Px$ and $Qx$ are the nearest points to $x$ in $M$ and $M^\perp$ resp.
+\end{itemize}
+\end{proposition}
+
+\begin{proposition}
+All continuous linear functionals on a Hilbert space $H$ are of the type $L_y:x\mapsto(x,y)$
+\end{proposition}
+
+\subsection{Orthonormality and trigonometric system}
 
 
 
