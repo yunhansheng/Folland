@@ -301,8 +301,7 @@ A linear function $\Lambda$ is \textbf{positive} if $f\geq0\Rightarrow\Lambda f\
 \textbf{inner regular}: $\mu(E)=\inf\{\mu(K):E\subset K\textrm{ and }E\textrm{ compact}\}$\newline
 A measure is \textbf{regular} if every measurable set is both inner and outer regular.\bigbreak
 \textbf{Borel measure}: measure defined on the $\sigma$-algebra of all Borel sets in a locally compact Hausdorff space\bigbreak
-A set is \textbf{$\sigma$-compact} if it is a countable union of compact sets.\newline
-A set has \textbf{$\sigma$-finite} measure if it is a countable union of finite-measure sets.
+A set is \textbf{$\sigma$-compact} if it is a countable union of compact sets. A set has \textbf{$\sigma$-finite} measure if it is a countable union of finite-measure sets.
 \end{defin}
 
 \begin{proposition}[Riesz Representation Theorem]\label{Prop 2.4}Let $X$ be a locally compact Hausdorff space and $\Lambda$ a positive linear functional on $C_c(X)$, then $\exists$ a $\sigma$-algebra $\mathfrak{M}$ that contains all Borel sets in X, and a unique positive measure $\mu$ on $\mathfrak{M}$ that represents $\Lambda$, i.e. $\forall f\in C_c(X):\Lambda  f=\int_Xf\,d\mu$, satisfying\begin{itemize}
@@ -320,7 +319,7 @@ A set has \textbf{$\sigma$-finite} measure if it is a countable union of finite-
 \end{itemize}
 \end{proposition}
 
-\begin{proposition}There exists a positive complete measure $($\textbf{Lebesgue measure}$)$ $m$ defined on a $\sigma$-algebra $\mathfrak{M}$ in $\mathbb{R}^k$ satisfying:\begin{itemize}
+\begin{proposition} On a $\sigma$-algebra $\mathfrak{M}$ in $\mathbb{R}^k$ $\exists$ a positive complete measure $($\textbf{Lebesgue measure}$)$ $m$ satisfying:\begin{itemize}
     \item $m(W)=\prod_{i=1}^k(\beta_i-\alpha_i)$ for every $W=\{(x_1,x_2,\dots,x_k):\alpha_i<x_i<\beta_i,\,1\leq i\leq k\}$
     \item $\mathfrak{M}$ contains all Borel sets of $\mathbb{R}^k$
     \item $m$ is translation-invariant, i.e. $\forall\,E\in\mathfrak{M}\ \forall\, x\in\mathbb{R}^k:m(E+x)=m(E)$, and $\forall$ positive translation-invariant Borel measure $\mu$ on $\mathbb{R}^k$ s.t. $\mu(K)$ is finite for every compact $K$, $\exists$ constant $c$ s.t. $\mu=cm$
@@ -438,6 +437,10 @@ $x$ is \textbf{orthogonal} to $y$, or $x\perp y$, if $(x,y)=0$, the set of all $
 \end{defin}
 
 \begin{proposition}
+A continuous function $f$ from a complete metric space $X$ to another metric space $Y$ is an isometry of $X$ onto $Y$, if it is an isometry from a dense subset $X_0\subset X$ to another dense subset $f(X_0)\subset Y$
+\end{proposition}
+
+\begin{proposition}
 Every nonempty, closed, convex set $E$ in a Hilbert space $H$ contains a unique element of smallest norm. 
 \end{proposition}
 
@@ -454,6 +457,60 @@ All continuous linear functionals on a Hilbert space $H$ are of the type $L_y:x\
 \end{proposition}
 
 \subsection{Orthonormality and trigonometric system}
+
+\begin{defin}~\\
+A set $A$ is \textbf{orthonormal} if elements in $A$ are normalized and mutually orthogonal. $A\subset H$ is \textbf{maximal} in $H$ if adjoining any other elements of $H$ violates its orthonormality.\newline
+For an orthonormal set $\{u_\alpha\}$ the \textbf{Fourier coefficient} of $x\in H$ ralative to $\{u_\alpha\}$ is $\hat{x}(\alpha)=(x,u_\alpha)$\bigbreak
+Let $0\leq\psi\leq\infty$, then $\sum_{\alpha\in A}\psi(\alpha)=\sup_F\sum_{\alpha\in F}\psi(\alpha)$ for finite $F\subset A$\newline
+The span of a set $S$ is denoted by $[S]$\bigbreak
+\textbf{Trigonometric polynomial}:
+\[f(t)=\sum_{n=-N}^Nc_ne^{int}\]\newline
+\textbf{Trigonometric system}: $\{u_n(t)=e^{int}:n\in\mathbb{Z}\}$\newline
+\textbf{Fourier coefficient} of $f\in L^1(S^1)$:
+\[\hat{f}(n)=\frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{-int}\,dt\]
+\textbf{Fourier series} of $f\in L^1(S^1)$:
+\[\sum_{-\infty}^\infty\hat{f}(n)e^{int}\]
+\end{defin}
+
+\begin{proposition}[Bessel's Inequality]Let $\{u_\alpha:\alpha\in A\}$ be an orthonormal set in a Hilbert space $H$, then
+\[\forall\,x\in H:\sum_{\alpha\in A}\abs{\hat{x}(\alpha)}^2\leq\norm{x}^2\]
+\end{proposition}
+
+\begin{proposition}[Riesz-Fischer Theorem]Let $H$ be a Hilbert space and orthonormal $S=\{u_\alpha:\alpha\in A\}\subset H$, then the mapping $f:H\twoheadrightarrow\ell^2(A)$ by $x\mapsto \hat{x}$ is continuous and linear, and $f|_{\overline{[S]}}:\overline{[S]}\twoheadrightarrow\ell^2(A)$ is an isometry.
+\end{proposition}
+
+\begin{proposition}
+Let $S=\{u_\alpha:\alpha\in A\}$ be an orthonormal set in a Hilbert space $H$, then the statements\begin{itemize}
+    \item $S$ is maximal
+    \item $[S]$ is dense in $H$
+    \item $f:x\mapsto\hat{x}$ is a Hilbert isomorphism of $H$ onto $\ell^2(A)$
+    \item \normalfont{Parseval's Identity}:
+    \[\forall\,x,y\in H:\sum_{\alpha\in A}\hat{x}(\alpha)\overline{\hat{y}(\alpha)}=(x,y)\]
+\end{itemize}
+are equivalent.
+\end{proposition}
+
+\begin{proposition}
+Every orthonormal set $B$ in a Hilbert space $H$ is contained in a maximal orthonormal set in $H$
+\end{proposition}
+
+\begin{remark}
+We define the inner product in $L^2(S^1)$ by
+\[(f,g)=\frac{1}{2\pi}\int_{-\pi}^\pi f(t)\overline{g(t)}\,dt\]
+\end{remark}
+
+\begin{proposition}
+The trigonometric system is the maximal orthonormal set in $L^2(S^1)$
+\end{proposition}
+
+\begin{exercise}
+
+\end{exercise}
+
+\newpage
+
+\section{Examples of Banach Space Techniques}
+
 
 
 
